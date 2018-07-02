@@ -1,35 +1,28 @@
 import React, {Component} from "react";
 
-import fetchOrganisations from "../requests/airtable";
-import Organisations from "./Organisations";
+const fetchingDataHOC = (fetchFunc) => (Comp) => {
+    return class extends Component {
+        state = {
+            data: [],
+            isLoading: false,
+            error: null,
+        };
 
-class OrganisationsContainer extends Component {
-    state = {
-        organisations: [],
-        loading: false
-    }
-    componentDidMount(){
-        this.setState({loading: true})
-        fetchOrganisations()
-            .then(organisations=>{
-                this.setState({organisations, loading: false})
-            })
-
-    }
-
-    render(){
-        const {loading, organisations} = this.state;
-        console.log(organisations)
-        if(loading){
-            return <p>Loading...</p>
+        componentDidMount() {
+            this.setState({ isLoading: true });
+            fetchFunc()
+                .then(data => this.setState({ data, isLoading: false }))
+                .catch(error => this.setState({ error, isLoading: false }));
         }
-        return (
-            <div>
-                
-                <Organisations organisations={organisations}/>
+
+        render() {
+            return (
+                <div>
+            <Comp {...this.props} {...this.state} />
             </div>
-        )
+            )
+        }
     }
 }
 
-export default OrganisationsContainer
+export default fetchingDataHOC

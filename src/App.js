@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import OrganisationsContainer from "./Organisations/OrganisationsContainer"
+import OrganisationsContainer from "./Organisations/Organisations"
 
 class App extends Component {
   render() {
