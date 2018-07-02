@@ -12,7 +12,6 @@ const Organisations = ({ organisations }) => (
             ))}
           </p>
           <p>{organisation["Type of Organisation"]}</p>
-          <p>
         </li>
       </ul>
     ))}
