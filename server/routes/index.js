@@ -5,13 +5,13 @@ const airtable = require("../utils/airtable");
 
 router.get("/api/all_organisations", (req, res) => {
     airtable.getOrganisations().then(organisations =>{
-      res.send(organisations)
+      res.send(JSON.stringify(organisations))
     })
 });
 
 router.get("/api/one_organisation", (req, res) => {
     airtable.getOneOrganisation("Futureversity").then(organisation =>{
-        res.send(organisation)
+        res.send(JSON.stringify(organisation))
     })
 })
 

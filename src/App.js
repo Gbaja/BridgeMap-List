@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import OrganisationsContainer from "./Organisations/OrganisationsContainer"
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">The list</h1>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={OrganisationsContainer}/>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
