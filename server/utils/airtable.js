@@ -40,14 +40,14 @@ const getOrganisations = () =>
             console.log(err)
         });
 
-const getOneOrganisation = org_name => 
-    base(ORGANISATION_BASE)
-        .select({
-            filterByFormula: `{Name of Organisation} = \"${org_name}\"`,
-            fields: OrganisationFields
-        })
-        .all()
-        .then(([record]) => record.fields)
+const getOneOrganisation = org_name =>
+  base(ORGANISATION_BASE)
+    .select({
+      filterByFormula: `{Name of Organisation} = \"${org_name}\"`,
+      fields: OrganisationFields
+    })
+    .all()
+    .then(record => record.map(record => record.fields));
 
 module.exports = {
   getOrganisations,

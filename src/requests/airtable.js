@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const fetchOrganisations = () =>{
+export const fetchOrganisations = () =>{
     return axios.get("/api/all_organisations")
         .then(response=>{
             return response.data
@@ -9,4 +9,11 @@ const fetchOrganisations = () =>{
         })
 }
 
-export default fetchOrganisations
+export const fetchOrganisation = () => {
+    return axios.get("/api/one_organisation")
+        .then(response => {
+            return response.data
+        }).catch(err => {
+            console.log(err)
+        })
+}
