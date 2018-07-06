@@ -1,10 +1,24 @@
-import React from "react"
+import React, {Component} from "react"
 
 import Header from "./Header";
 
-const Join = () => <div>
-    <Header/>
-    <iframe class="airtable-embed" src="https://airtable.com/embed/shrNnAGLdnXcjPTBm?backgroundColor=red"  onmousewheel="" width="100%" height="533" style={{"background": "transparent", "border": "1px solid #ccc"}}></iframe>
-     </div>
+class Join extends Component{
+    render(){
+        return (
+        <div>
+            <Header/>
+            <iframe 
+                ref="iframe-form"
+                class="airtable-embed" src="https://airtable.com/embed/shrNnAGLdnXcjPTBm?backgroundColor=red" 
+                width="100%" 
+                height="533" 
+                style={{"background": "transparent", "border": "1px solid #ccc"}} 
+                title="Form to join the directory" 
+                onLoad={()=><p>Loading form</p>}>
+                </iframe>
+         </div>
+        )
+    }
+}
 
 export default Join;

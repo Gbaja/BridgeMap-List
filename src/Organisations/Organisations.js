@@ -7,19 +7,6 @@ import Header from "../StaticPages/Header";
 
 const Organisations = ({ data, isLoading, error }) =>{
     const organisations = data || [];
-    if (error) 
-      <div>
-        <Header />
-        <p>{error.message}</p>
-      </div>
-      
-
-      if (isLoading) 
-        <div>
-          <Header />
-          <p>Loading...</p>
-        </div>
-
     return (
       <div>
         <Header/>

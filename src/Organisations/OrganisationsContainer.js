@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import Header from "../StaticPages/Header"
+
 const fetchingDataHOC = (fetchFunc) => (Comp) => {
     return class extends Component {
         state = {
@@ -16,6 +18,19 @@ const fetchingDataHOC = (fetchFunc) => (Comp) => {
         }
 
         render() {
+            if (this.state.error) {
+                return <div>
+                    <Header />
+                    <p>{this.state.error.message}</p>
+                </div>
+            }
+
+            if (this.state.isLoading) {
+                return <div>
+                    <Header />
+                    <p>Loading...</p>
+                </div>
+            }
             return (
                 <div>
             <Comp {...this.props} {...this.state} />
