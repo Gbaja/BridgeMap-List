@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import Organisations from "./Organisations/Organisations"
+import About from "./StaticPages/About"
+import Join from "./StaticPages/Join"
+import Organisation from './Organisations/Organisation';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">The list</h1>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Organisations} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/join" component={Join}/>
+          <Route exact path="/organisation/:name" component={Organisation}/>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
