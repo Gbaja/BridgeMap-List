@@ -13,9 +13,13 @@ const fetchingDataHOC = (fetchFunc) => (Comp) => {
 
         componentDidMount() {
             this.setState({ isLoading: true });
-            fetchFunc( this.props.match.params.name)
-                .then(data => this.setState({ data, isLoading: false }))
-                .catch(error => this.setState({ error, isLoading: false }));
+            fetchFunc(this.props.organisationName || this.props.match.params.name)
+              .then(data =>
+                this.setState({ data, isLoading: false })
+              )
+              .catch(error =>
+                this.setState({ error, isLoading: false })
+              );
         }
 
         render() {

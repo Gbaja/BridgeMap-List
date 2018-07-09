@@ -6,7 +6,6 @@ import Header from "../StaticPages/Header";
 import "./Organisation.css"
 
 const Organisation = (props) => {
-  console.log(props)
     const organisation = props.data || [];
     return <div>
         <Header />
