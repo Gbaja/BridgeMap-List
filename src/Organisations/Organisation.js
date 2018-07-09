@@ -51,4 +51,4 @@ const Organisation = (props) => {
 }
 
 
-export default fetchingDataHOC(()=>fetchOrganisation("Futureversity"))(Organisation);
+export default fetchingDataHOC(fetchOrganisation)(Organisation);
