@@ -9,8 +9,9 @@ export const fetchOrganisations = () =>{
         })
 }
 
-export const fetchOrganisation = () => {
-    return axios.get("/api/one_organisation")
+export const fetchOrganisation = (name) => {
+    return axios.get(`/api/one_organisation`, 
+    { params: { name } } )
         .then(response => {
             return response.data
         }).catch(err => {

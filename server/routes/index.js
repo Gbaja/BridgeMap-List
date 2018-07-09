@@ -9,8 +9,8 @@ router.get("/api/all_organisations", (req, res) => {
     })
 });
 
-router.get("/api/one_organisation", (req, res) => {
-    airtable.getOneOrganisation("Futureversity").then(organisation =>{
+router.get(`/api/one_organisation`, (req, res) => {
+    airtable.getOneOrganisation(req.query.name).then(organisation =>{
         res.send(JSON.stringify(organisation))
     })
 })

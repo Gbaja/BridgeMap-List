@@ -1,13 +1,13 @@
 import React from "react";
 
-
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisation} from "../requests/airtable";
 import Header from "../StaticPages/Header";
 import "./Organisation.css"
 
-const Organisation = ({ data, isLoading, error }) => {
-    const organisation = data || [];
+const Organisation = (props) => {
+  console.log(props)
+    const organisation = props.data || [];
     return <div>
         <Header />
         {organisation.map(info => (
