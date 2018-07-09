@@ -4,3 +4,7 @@
 .org-info__what{
     font-weight: bold;
 }
+.org-info__image{
+    width: 200px;
+    height: 150px;
+}
