@@ -15,4 +15,50 @@ router.get(`/api/one_organisation`, (req, res) => {
     })
 })
 
+router.post(`/api/add_organisation`, (req, res) => {
+    const { orgName,
+        orgType,
+        registeredNumber,
+        website,
+        orgEmail,
+        orgNumber,
+        about,
+        areas,
+        services,
+        how,
+        completedBy,
+    ageGroup } = req.body
+    const data = {
+        "Name of Organisation":orgName,
+        "Type of Organisation":orgType,
+        "Registered number":registeredNumber,
+        "Website":website,
+        "Organisation email":orgEmail,
+        "Organisation contact number":orgNumber,
+        "About":about,
+        "Areas we work in":areas,
+        "Age group we work with":ageGroup,
+        "Services Provided to young people":services,
+        "How we work with young people":how,
+        "Form completed by":completedBy,
+        "Status":"Pending"
+        // mentoring,
+        // housing,
+        // events,
+        // employability,
+        // intern,
+        // volunteering,
+        // mental,
+        // legal,
+        // other,
+        // throughReferrals,
+        // throughSchools,
+        //throughDirect 
+    }
+    console.log(req.body);
+    airtable.addOrganisation(data).then(response => {
+      res.send(JSON.stringify(response));
+    });
+})
+
 module.exports = router;

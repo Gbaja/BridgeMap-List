@@ -18,3 +18,12 @@ export const fetchOrganisation = (name) => {
             console.log(err)
         })
 }
+
+export const addOrganisation = (data) => {
+     axios.post(`/api/add_organisation`,data)
+        .then(response => {
+            return response
+        }).catch(err => {
+            console.log(err)
+        })
+}

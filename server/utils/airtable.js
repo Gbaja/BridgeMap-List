@@ -49,7 +49,18 @@ const getOneOrganisation = org_name =>
     .all()
     .then(record => record.map(record => record.fields));
 
+const addOrganisation = (data) => 
+    base(ORGANISATION_BASE).create(data)
+        .then(() => {
+            return {message: "Your organisation has been added."}
+        })
+        .catch(err=>{
+            console.log("AIRTABLE ADD ORGANISATION ERROR: ", err)
+        })
+
 module.exports = {
   getOrganisations,
-  getOneOrganisation
+  getOneOrganisation,
+  addOrganisation
 };
+
