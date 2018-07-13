@@ -98,8 +98,6 @@ const JoinForm = ({ errors, touched, status }) => {
           <Field type="checkbox" name="mentalService" />
           <label>Legal advice</label>
           <Field type="checkbox" name="legalService" />
-          <label>Other</label>
-          <Field type="text" name="otherService" />
           <p>How we work with young people</p>
           <p />
           <label>Referalls</label>

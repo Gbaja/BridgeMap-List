@@ -7,12 +7,7 @@ import "./StaticPages.css"
 const Header = () => (
   <div className="header__container">
   <div>
-    <Link to="/"><img
-      src={Logo}
-      className="header__image"
-      alt="VisionariesUK logo"
-    />
-    </Link>
+    <Link to="/">BridgeMap</Link>
     </div>
     <ul className="header__nav__container">
       <li className="header__nav__list">

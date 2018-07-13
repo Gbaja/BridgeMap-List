@@ -42,23 +42,14 @@ router.post(`/api/add_organisation`, (req, res) => {
         "How we work with young people":how,
         "Form completed by":completedBy,
         "Status":"Pending"
-        // mentoring,
-        // housing,
-        // events,
-        // employability,
-        // intern,
-        // volunteering,
-        // mental,
-        // legal,
-        // other,
-        // throughReferrals,
-        // throughSchools,
-        //throughDirect 
     }
-    console.log(req.body);
     airtable.addOrganisation(data).then(response => {
       res.send(JSON.stringify(response));
     });
+})
+
+router.post("/api/find_organisations", (req, res)=>{
+    res.send("find organisation")
 })
 
 module.exports = router;
