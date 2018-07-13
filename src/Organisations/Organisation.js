@@ -16,7 +16,6 @@ const Organisation = (props) => {
             className="org-info__container"
           >
             <h1 className="org-info__name">{info["Name of Organisation"]}</h1>
-            <img src={info.Logo[0].url} alt="Organisation's logo" className="org-info__image"/>
             <p className="org-info__what">About</p>
             <p className="org-info__about">{info.About}</p>
             <p className="org-info__what">Website</p>

@@ -14,7 +14,6 @@ const OrganisationFields = [
     "Type of Organisation",
     "Registered number",
     "Website",
-    "Logo",
     "Organisation email",
     "Organisation contact number",
     "About",

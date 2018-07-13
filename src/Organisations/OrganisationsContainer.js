@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {withRouter} from "react-router-dom"
 
 import Header from "../StaticPages/Header"
@@ -24,22 +24,24 @@ const fetchingDataHOC = (fetchFunc) => (Comp) => {
 
         render() {
             if (this.state.error) {
-                return <div>
+                return <Fragment>
                     <Header />
                     <p>{this.state.error.message}</p>
-                </div>
+                </Fragment>
             }
 
             if (this.state.isLoading) {
-                return <div>
+                return <Fragment>
                     <Header />
-                    <p>Loading...</p>
-                </div>
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </Fragment>
             }
+
             return (
                 <div>
-            <Comp {...this.props} {...this.state} />
-            </div>
+                    <Comp {...this.props} {...this.state} />
+                </div>
             )
         }
     }
