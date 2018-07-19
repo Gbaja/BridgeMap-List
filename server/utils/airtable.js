@@ -9,6 +9,8 @@ Airtable.configure({
 const base = Airtable.base(process.env.AIRTABLE_BASE);
 const ORGANISATION_BASE = "Organisations";
 const HOW_BASE= "How";
+const SERVICES_BASE = "Services";
+const WHERE_BASE = "Location";
 
 const OrganisationFields = [
     "Name of Organisation",
@@ -24,8 +26,8 @@ const OrganisationFields = [
     "Age group we work with"
 ]
 
-const getOrganisations = () => 
-    base(ORGANISATION_BASE)
+const getOrganisations = async () => {
+    const records = await base(ORGANISATION_BASE)
         .select({
             filterByFormula: `{Status} = "Verified"`,
             fields: ["Name of Organisation",
@@ -33,56 +35,73 @@ const getOrganisations = () =>
                      "Services Provided to young people", ]
         })
         .all()
-        .then(records => {
-        return records.map(record => record.fields);
-        }).then(organisations=>{
-            return organisations
+    const organisationsData = records.map(record => record.fields)
+
+      const mapOrgsServices = organisationsData.map( async (organisationData) => {
+          
+          const services = organisationData["Services Provided to young people"].map(
+              id => {
+                  return base(HOW_BASE)
+                      .find(id)
+                      .then(record => {
+                          return record.fields.Name;
+                      });
+              }
+          );
+         const servicesArray = await Promise.all(services);
+          organisationData["Services Provided to young people"] = servicesArray;
+          return organisationsData
+      })
+
+     const details = await Promise.all(mapOrgsServices)
+      
+    return details[0]
+}
+
+
+const getOneOrganisation = async (org_name) => {
+    const record = await base(ORGANISATION_BASE)
+        .select({
+            filterByFormula: `{Name of Organisation} = \"${org_name}\"`,
+            fields: OrganisationFields
         })
-        .catch(err=> {
-            console.log(err)
+        .all();
+
+    const data = record.map(record => record.fields)
+    const where = data[0]["Where we are based"].map(id => {
+      return base(WHERE_BASE)
+        .find(id)
+        .then(record => {
+          return record.fields.Name;
         });
-
-const getOneOrganisation = org_name =>
-  base(ORGANISATION_BASE)
-    .select({
-      filterByFormula: `{Name of Organisation} = \"${org_name}\"`,
-      fields: OrganisationFields
+    });
+    const how = data[0]["How we work with young people"].map(id => {
+        return base(HOW_BASE).find(id).then(record => {
+            return record.fields.Name;
+        })
     })
-    .all()
-    .then(record => {
-        const data = record.map(record => record.fields)
+    const services = data[0]["Services Provided to young people"].map(
+        id => {
+            return base(SERVICES_BASE)
+                .find(id)
+                .then(record => {
+                    return record.fields.Name;
+                });
+        }
+    );
+    const howArray = await Promise.all(how);
+    const servicesArray = await Promise.all(services);
+    const whereArray = await Promise.all(where)
+    data[0]["Services Provided to young people"] = servicesArray;
+    data[0]["How we work with young people"] = howArray;
+    data[0]["Where we are based"] = whereArray;
+    return data
 
-        const how = data[0]["How we work with young people"].map(id=>{
-            return base(HOW_BASE).find(id).then(record=>{
-                return record.fields.Name;
-            })
-        })
+}
 
-        const howArray = Promise.all(how).then((results)=> {
-            console.log(results)
-            return results
-        })
 
-        const services = data[0]["Services Provided to young people"].map(
-          id => {
-            return base(HOW_BASE)
-              .find(id)
-              .then(record => {
-                return record.fields.Name;
-              });
-          }
-        );
 
-        const servicesArray = Promise.all(services).then((results) => {
-            console.log(results)
-            return results
-        })
 
-        
-    
-        return data
-       
-    })
 
 const addOrganisation = (data) => 
     base(ORGANISATION_BASE).create(data)
