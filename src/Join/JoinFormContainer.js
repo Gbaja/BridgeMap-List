@@ -92,7 +92,7 @@ otherService: otherService||"",
         services.push("Legal advice")
       }
       if(values.throughReferrals){
-        how.push("Referrals ")
+        how.push("Referrals")
       }
       if(values.throughSchools){
         how.push("Through partnership with schools");

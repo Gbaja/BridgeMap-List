@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import "./SearchForm.css";
+
 class SearchForm extends Component{
   state = {
     how: "",
@@ -22,21 +24,37 @@ class SearchForm extends Component{
   }
 
     render(){
-        return <div>
-            <h1>BridgeMap List</h1>
+        return <div className="search-form">
+            <h1 className="search-form__heading">BridgeMap List</h1>
             <p>
               Find organisations that work with young people quicker
             </p>
             <form onSubmit={this.handleSubmit}>
-              <select name="how" onChange={this.handleChange} value={this.state.how}>
-                    <option value="">How they work with young people</option>
-                    <option value="Through Partnership with schools">
-                    Through Partnership with schools
-                    </option>
-                    <option value="Young people can come to us directly">Young people can come to us directly</option>
-                    <option value="Age group we work with">Age group we work with</option>
+            <select name="location" onChange={this.handleChange} value={this.state.how} className="search-form__select">
+              <option value="Tower Hamlet">
+                Tower Hamlet
+                </option>
+              <option value="Southwark">Southwark</option>
+              <option value="Newham">
+                Newham
+                </option>
+              <option value="Young people can come to us directly">
+                Young people can come to us directly
+                </option>
+            </select>
+              <select name="how" onChange={this.handleChange} value={this.state.how} className="search-form__select">
+                <option value="">
+                  How they work with young people
+                </option>
+                <option value="Referrals">Referrals</option>
+                <option value="Through Partnership with schools">
+                  Through Partnership with schools
+                </option>
+                <option value="Young people can come to us directly">
+                  Young people can come to us directly
+                </option>
               </select>
-            <select name="service" onChange={this.handleChange} value={this.state.service}>
+              <select name="service" onChange={this.handleChange} value={this.state.service} className="search-form__select">
                 <option value="">Services they offer</option>
                 <option value="Mentoring">Mentoring</option>
                 <option value="Housing">Housing</option>
@@ -54,7 +72,7 @@ class SearchForm extends Component{
                   Mental health support
                 </option>
               </select>
-              <button type="submit">Search</button>
+              <button type="submit" className="search-form__submit">Search</button>
             </form>
           </div>;
     }

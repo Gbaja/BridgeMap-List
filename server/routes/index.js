@@ -49,7 +49,9 @@ router.post(`/api/add_organisation`, (req, res) => {
 })
 
 router.post("/api/find_organisations", (req, res)=>{
-    res.send("find organisation")
+    airtable.findOrganisations(req.body).then(organisations=>{
+        res.send(JSON.stringify(organisations));
+    })
 })
 
 module.exports = router;
