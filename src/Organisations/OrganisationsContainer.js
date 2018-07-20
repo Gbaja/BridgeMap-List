@@ -30,14 +30,6 @@ const fetchingDataHOC = (fetchFunc) => (Comp) => {
                 </Fragment>
             }
 
-            if (this.state.isLoading) {
-                return <Fragment>
-                    <Header />
-                    <div className="loading-spinner"></div>
-                    <p className="loading-text">Loading...</p>
-                </Fragment>
-            }
-
             return (
                 <div>
                     <Comp {...this.props} {...this.state} />

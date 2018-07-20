@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisation } from "../requests/airtable";
@@ -7,6 +7,15 @@ import "./Organisation.css";
 
 const Organisation = props => {
   const organisation = props.data || [];
+  if (this.state.isLoading) {
+    return (
+      <Fragment>
+        <Header />
+        <div className="loading-spinner" />
+        <p className="loading-text">Loading...</p>
+      </Fragment>
+    );
+  }
   return (
     <div>
       <Header />

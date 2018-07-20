@@ -12,22 +12,33 @@ const Organisations = ({ data, isLoading, error }) => {
     <div>
       <Header />
       <SearchForm />
-      {organisations.map(organisation => (
-        <ul key={organisation["Name of Organisation"]}>
-          <li>
-            <p>{organisation["Name of Organisation"]}</p>
-            <p>
-              {organisation["Services Provided to young people"].map(
-                service => <span key={service}>{service}</span>
-              )}
-            </p>
-            <p>{organisation["Type of Organisation"]}</p>
-            <Link to={`/organisation/${organisation["Name of Organisation"]}`}>
-              View more info
-            </Link>
-          </li>
-        </ul>
-      ))}
+      {isLoading ? (
+        <div>
+          {" "}
+          <div className="loading-spinner" />
+          <p className="loading-text">Loading organisations...</p>
+        </div>
+      ) : (
+        organisations.map(organisation => (
+          <ul key={organisation["Name of Organisation"]}>
+            <li>
+              <p>{organisation["Name of Organisation"]}</p>
+              <p>
+                {organisation["Services Provided to young people"].map(
+                  service => <span key={service}>{service}</span>
+                )}
+              </p>
+              <p>{organisation["Type of Organisation"]}</p>
+              <Link
+                to={`/organisation/${organisation["Name of Organisation"]}`}
+              >
+                View more info
+              </Link>
+            </li>
+          </ul>
+        ))
+      )}
+      }
     </div>
   );
 };
