@@ -1,6 +1,8 @@
 const Airtable = require("airtable");
 require("env2")("config.env");
 
+const { uploadImage } = require("./cloudinary");
+
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
   apiKey: process.env.AIRTABLE_API_KEY

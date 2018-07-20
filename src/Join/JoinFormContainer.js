@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
+import { addOrganisation } from "../requests/airtable";
 import "./Join.css";
 
 const byNotEqualTo = value => service => service !== value;
@@ -51,6 +52,7 @@ class JoinFormContainer extends Component {
   handleSumbit = event => {
     event.preventDefault();
     console.log(this.state.form);
+    addOrganisation(this.state.form);
   };
 
   handleFileUpload = event => {
