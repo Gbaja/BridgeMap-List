@@ -1,110 +1,124 @@
-import { withFormik } from "formik";
-import * as Yup from "yup";
-import axios from "axios"
+import React, { Component, Fragment } from "react";
 
+import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
-import {addOrganisation} from "../requests/airtable"
+import { addOrganisation } from "../requests/airtable";
+import "./Join.css";
 
-const JoinFormForkik = withFormik({
-  mapPropsToValues({ 
-      orgName,
-      orgType,
-      registeredNumber,
-      website,
-      orgEmail,
-      orgNumber,
-      about,
-      areas,
-      ageGroup,
-      completedBy,
-    mentoringService,
-housingService,
-eventsService,
-employabilityService,
-internService,
-volunteeringService,
-mentalService,
-legalService,
-otherService,
-      throughReferrals,
-      throughSchools,
-      throughDirect
-    }) {
-    return {
-      orgName: orgName || "",
-      orgType: orgType || "",
-      registeredNumber: registeredNumber ||"",
-      website: website ||"",
-      orgEmail: orgEmail ||"",
-      orgNumber: orgNumber ||"",
-      about: about ||"",
-      areas: areas ||"",
-      ageGroup: ageGroup || "",
-      completedBy: completedBy || "",
-      mentoringService: mentoringService || "",
-housingService: housingService || "",
-eventsService:eventsService || "",
-employabilityService: employabilityService || "",
-internService: internService || "",
-volunteeringService: volunteeringService || "",
-mentalService: mentalService || "",
-legalService: legalService || "",
-otherService: otherService||"",
-      throughReferrals:throughReferrals ||"",
-      throughSchools: throughSchools||"",
-      throughDirect:throughDirect || ""    };
-  },
-  validationSchema: Yup.object().shape({
-    // name: Yup.string().required("Please enter a name!"),
-    // userName: Yup.string().required("Please enter a userName!"),
-    // email: Yup.string()
-    //   .email("Email not valid")
-    //   .required("Email is required"),
-    // password: Yup.string().required("Please enter a password!"),
-    // isExpert: Yup.string().required("Please select a value")
-  }),
-  handleSubmit(values, { props, setStatus }) {
-    console.log(values);
-    let services = [];
-    let how = [];
-    if(values.mentoringService){
-      services.push("Mentoring")
+const byNotEqualTo = value => service => service !== value;
+
+class JoinFormContainer extends Component {
+  state = {
+    services: [],
+    how: [],
+    where: [],
+    loading: false,
+    form: {
+      orgName: "",
+      orgType: "",
+      website: "",
+      regNum: "",
+      ageGroup: "",
+      logo: "",
+      about: "",
+      services: [],
+      how: [],
+      where: [],
+      email: "",
+      number: "",
+      completedBy: "",
+      otherInfo: ""
     }
-    if(values.housingService){
-      services.push("Housing")
-    }
-    if(values.eventsService){
-      services.push("Short courses, events and activities")
-    }
-    if(values.employabilityService){
-      services.push("Employability advice and support");
-    }
-      if (values.internService){
-        services.push("Paid Apprenticeship/Internship");
+  };
+
+  componentDidMount() {
+    this.setState({ loading: true });
+    return Promise.all([fetchServices(), fetchHows(), fetchWheres()]).then(
+      ([services, how, where]) => {
+        this.setState({ services, how, where, loading: false });
       }
-      if(values.volunteeringService){
-        services.push("Volunteering")
-      }
-      if(values.mentalService){
-        services.push("Mental health support");
-      }
-      if(values.legalService){
-        services.push("Legal advice")
-      }
-      if(values.throughReferrals){
-        how.push("Referrals")
-      }
-      if(values.throughSchools){
-        how.push("Through partnership with schools");
-      }
-      if(values.throughDirect){
-        how.push("Young people can come to us directly");
-      }
-    values.services = services;
-    values.how = how;
-    return addOrganisation(values)
-   
+    );
   }
-})(JoinForm);
 
-export default JoinFormForkik;
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      form: { ...this.state.form, [name]: value }
+    });
+  };
+
+  handleSumbit = event => {
+    event.preventDefault();
+    console.log(this.state.form);
+    addOrganisation(this.state.form);
+  };
+
+  handleFileUpload = event => {
+    this.setState({
+      form: { ...this.state.form, logo: event.target.files[0] }
+    });
+  };
+
+  handleServiceChange = ({ target: { checked, value } }) => {
+    const { form } = this.state;
+    const { services } = form;
+    if (checked) {
+      /// ...form is because the value we are changing is nested
+      this.setState({ form: { ...form, services: [...services, value] } });
+    } else {
+      this.setState({
+        form: { ...form, services: services.filter(byNotEqualTo(value)) }
+      });
+    }
+    console.log(value, checked);
+  };
+
+  handleHowChange = ({ target: { checked, value } }) => {
+    const { form } = this.state;
+    const { how } = form;
+    if (checked) {
+      this.setState({ form: { ...form, how: [...how, value] } });
+    } else {
+      this.setState({
+        form: { ...form, how: how.filter(byNotEqualTo(value)) }
+      });
+    }
+  };
+
+  handleWhereChange = ({ target: { checked, value } }) => {
+    const { form } = this.state;
+    const { where } = form;
+    if (checked) {
+      this.setState({ form: { ...form, where: [...where, value] } });
+    } else {
+      this.setState({
+        form: { ...form, where: where.filter(byNotEqualTo(value)) }
+      });
+    }
+  };
+  render() {
+    if (this.state.loading) {
+      return <div>loading form...</div>;
+    }
+    return (
+      <div>
+        <JoinForm
+          form={this.state.form}
+          handleInputChange={this.handleInputChange}
+          handleServiceChange={this.handleServiceChange}
+          handleHowChange={this.handleHowChange}
+          handleWhereChange={this.handleWhereChange}
+          handleSumbit={this.handleSumbit}
+          handleFileUpload={this.handleFileUpload}
+          services={this.state.services}
+          where={this.state.where}
+          how={this.state.how}
+        />
+      </div>
+    );
+  }
+}
+
+export default JoinFormContainer;

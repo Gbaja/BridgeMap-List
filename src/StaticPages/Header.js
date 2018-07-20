@@ -1,13 +1,13 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import Logo from "./logo.jpg";
-import "./StaticPages.css"
+import "./StaticPages.css";
 
 const Header = () => (
   <div className="header__container">
-  <div>
-    <Link to="/">BridgeMap</Link>
+    <div>
+      <Link to="/">BridgeMap</Link>
     </div>
     <ul className="header__nav__container">
       <li className="header__nav__list">
@@ -29,4 +29,4 @@ const Header = () => (
   </div>
 );
 
-export default Header
+export default Header;
