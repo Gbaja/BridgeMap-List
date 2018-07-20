@@ -38,7 +38,6 @@ const Organisations = ({ data, isLoading, error }) => {
           </ul>
         ))
       )}
-      }
     </div>
   );
 };

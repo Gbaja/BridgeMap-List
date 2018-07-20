@@ -7,7 +7,7 @@ import "./Organisation.css";
 
 const Organisation = props => {
   const organisation = props.data || [];
-  if (this.state.isLoading) {
+  if (props.isLoading) {
     return (
       <Fragment>
         <Header />
