@@ -26,6 +26,34 @@ const OrganisationFields = [
     "Age group we work with"
 ]
 
+const getAllServices = async()=>{
+    const allServicesRecords = await base(SERVICES_BASE)
+        .select({
+            fields: ["Name"]
+        })
+        .all()
+    const servicesField = allServicesRecords.map(record => record.fields)
+    return servicesField
+}
+
+const getAllHow = async () => {
+    const allHowRecords = await base(HOW_BASE)
+        .select({
+            fields: ["Name"]
+        })
+        .all()
+    const howFields = allHowRecords.map(record => record.fields)
+    return howFields
+}
+const getAllWhere = async () => {
+    const allWhereRecords = await base(WHERE_BASE)
+        .select({
+            fields: ["Name"]
+        })
+        .all()
+    const whereField = allWhereRecords.map(record => record.fields)
+    return whereField
+}
 const getOrganisations = async () => {
     const records = await base(ORGANISATION_BASE)
         .select({
@@ -136,6 +164,9 @@ const findOrganisations = (data) =>
 
 
 module.exports = {
+getAllServices,
+getAllHow,
+getAllWhere,
   getOrganisations,
   getOneOrganisation,
   addOrganisation,

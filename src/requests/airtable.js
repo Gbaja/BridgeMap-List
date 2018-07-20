@@ -1,5 +1,31 @@
 import axios from "axios"
 
+export const fetchServices = () =>{
+     return axios.get("/api/all_services")
+        .then(response => {
+            return response.data
+        }).catch(err => {
+            console.log(err)
+        })
+}
+
+export const fetchWheres = () => {
+    return axios.get("/api/all_where")
+        .then(response => {
+            return response.data
+        }).catch(err => {
+            console.log(err)
+        })
+}
+export const fetchHows = () => {
+    return axios.get("/api/all_how")
+        .then(response => {
+            return response.data
+        }).catch(err => {
+            console.log(err)
+        })
+}
+
 export const fetchOrganisations = () =>{
     return axios.get("/api/all_organisations")
         .then(response=>{
