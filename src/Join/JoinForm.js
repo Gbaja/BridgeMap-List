@@ -58,15 +58,15 @@ const JoinForm = props => (
         />
         <label>Logo</label>
         <input name="logo" type="file" onChange={props.handleFileUpload} />
+      </fieldset>
+      <fieldset>
+        <legend>About</legend>
         <label>About</label>
         <textarea
           value={props.form.about}
           onChange={props.handleInputChange}
           name="about"
         />
-      </fieldset>
-      <fieldset>
-        <legend>About</legend>
         <label>Services we offer to young people</label>
         {props.services.map(({ Name }) => {
           return (
