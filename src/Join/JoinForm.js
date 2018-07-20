@@ -1,16 +1,15 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 
+import "./Join.css";
+import Header from "../StaticPages/Header";
 
-import "./Join.css"
-import Header from "../StaticPages/Header"
-
-const JoinForm = (props) => {
-  return (
-    <div>
+const JoinForm = props => (
+  <div>
     <h2>Join BridgeMap List</h2>
     <form onSubmit={props.handleSumbit}>
       <label>Organisation name</label>
-      <input name="orgName"
+      <input
+        name="orgName"
         type="text"
         value={props.form.orgName}
         onChange={props.handleInputChange}
@@ -19,62 +18,67 @@ const JoinForm = (props) => {
       <select
         name="orgType"
         value={props.form.orgType}
-        onChange={props.handleInputChange}>
-        <option value=""></option>
+        onChange={props.handleInputChange}
+      >
+        <option value="" />
         <option value="Charity">Charity</option>
-        <option value="Social enterprise/Not for Profit">Social enterprise/Not for Profit</option>
-        <option value="Community Interest Company">Community Interest Company</option>
-        <option value="Other i.e partnership, sole trader">Other i.e partnership, sole trader</option>
+        <option value="Social enterprise/Not for Profit">
+          Social enterprise/Not for Profit
+        </option>
+        <option value="Community Interest Company">
+          Community Interest Company
+        </option>
+        <option value="Other i.e partnership, sole trader">
+          Other i.e partnership, sole trader
+        </option>
       </select>
       <label>Logo</label>
-      <input
-        name="logo"
-        type="file"
-
-        onChange={props.handleFileUpload}
-      />
+      <input name="logo" type="file" onChange={props.handleFileUpload} />
       <label>Services we offer to young people</label>
       {props.services.map(({ Name }) => {
-        return <Fragment key={Name}>
-          <label>{Name}</label>
-          <input
-            type="checkbox"
-            value={Name}
-            checked={props.form.services.includes(Name)}
-            onChange={props.handleServiceChange}
-          />
-        </Fragment>
+        return (
+          <Fragment key={Name}>
+            <label>{Name}</label>
+            <input
+              type="checkbox"
+              value={Name}
+              checked={props.form.services.includes(Name)}
+              onChange={props.handleServiceChange}
+            />
+          </Fragment>
+        );
       })}
       <label>How we work with young people</label>
       {props.how.map(({ Name }) => {
-        return <Fragment key={Name}>
-          <label>{Name}</label>
-          <input
-            type="checkbox"
-            value={Name}
-            checked={props.form.how.includes(Name)}
-            onChange={props.handleHowChange}
-          />
-        </Fragment>
+        return (
+          <Fragment key={Name}>
+            <label>{Name}</label>
+            <input
+              type="checkbox"
+              value={Name}
+              checked={props.form.how.includes(Name)}
+              onChange={props.handleHowChange}
+            />
+          </Fragment>
+        );
       })}
       <label>Areas we work within</label>
       {props.where.map(({ Name }) => {
-        return <Fragment key={Name}>
-          <label>{Name}</label>
-          <input
-            type="checkbox"
-            value={Name}
-            checked={props.form.where.includes(Name)}
-            onChange={props.handleWhereChange}
-          />
-        </Fragment>
+        return (
+          <Fragment key={Name}>
+            <label>{Name}</label>
+            <input
+              type="checkbox"
+              value={Name}
+              checked={props.form.where.includes(Name)}
+              onChange={props.handleWhereChange}
+            />
+          </Fragment>
+        );
       })}
       <button type="submit">Submit</button>
     </form>
-    </div>
-  )
-};
+  </div>
+);
 
 export default JoinForm;
-
-
