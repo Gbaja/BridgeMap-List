@@ -5,6 +5,7 @@ import Header from "../StaticPages/Header";
 
 const JoinForm = props => (
   <div>
+    <Header />
     <h2>Join BridgeMap List</h2>
     <form onSubmit={props.handleSumbit}>
       <label>Organisation name</label>
@@ -32,8 +33,35 @@ const JoinForm = props => (
           Other i.e partnership, sole trader
         </option>
       </select>
+      <label>Website</label>
+      <input
+        type="url"
+        name="website"
+        value={props.form.website}
+        onChange={props.handleInputChange}
+      />
+      <label>Registered number</label>
+      <input
+        type="text"
+        name="regNum"
+        value={props.form.regNum}
+        onChange={props.handleInputChange}
+      />
+      <label>Age group we work with</label>
+      <input
+        type="text"
+        name="ageGroup"
+        value={props.form.ageGroup}
+        onChange={props.handleInputChange}
+      />
       <label>Logo</label>
       <input name="logo" type="file" onChange={props.handleFileUpload} />
+      <label>About</label>
+      <textarea
+        value={props.form.about}
+        onChange={props.handleInputChange}
+        name="about"
+      />
       <label>Services we offer to young people</label>
       {props.services.map(({ Name }) => {
         return (
@@ -76,6 +104,33 @@ const JoinForm = props => (
           </Fragment>
         );
       })}
+      <label>Organisation email</label>
+      <input
+        type="text"
+        name="email"
+        value={props.form.email}
+        onChange={props.handleInputChange}
+      />
+      <label>Organisation contact number</label>
+      <input
+        type="text"
+        name="number"
+        value={props.form.number}
+        onChange={props.handleInputChange}
+      />
+      <label>Form completed by</label>
+      <input
+        type="text"
+        name="completedBy"
+        value={props.form.completedBy}
+        onChange={props.handleInputChange}
+      />
+      <label>Any other info</label>
+      <textarea
+        value={props.form.otherInfo}
+        onChange={props.handleInputChange}
+        name="otherInfo"
+      />
       <button type="submit">Submit</button>
     </form>
   </div>
