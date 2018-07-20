@@ -2,10 +2,17 @@
   display: flex;
   align-content: center;
   justify-content: space-between;
+  height: 40px;
+  background-color: ghostwhite;
+}
+.header__logo {
+  align-self: center;
 }
 .header__image {
   width: 100px;
   height: 50px;
+  height: 40px;
+  font-size: 1rem;
 }
 .header__nav__container {
   margin: 0;
@@ -17,7 +24,7 @@
   display: inline;
 }
 .header__nav__link {
-  color: black;
+  color: #7d2d45;
   padding: 0 0.5rem;
   text-decoration: none;
 }

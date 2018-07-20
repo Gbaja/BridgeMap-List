@@ -35,6 +35,7 @@ class SearchForm extends Component {
             value={this.state.how}
             className="search-form__select"
           >
+            <option value="">Location</option>
             <option value="Tower Hamlet">Tower Hamlet</option>
             <option value="Southwark">Southwark</option>
             <option value="Newham">Newham</option>
@@ -48,7 +49,7 @@ class SearchForm extends Component {
             value={this.state.how}
             className="search-form__select"
           >
-            <option value="">How they work with young people</option>
+            <option value="">How</option>
             <option value="Referrals">Referrals</option>
             <option value="Through Partnership with schools">
               Through Partnership with schools
@@ -63,7 +64,7 @@ class SearchForm extends Component {
             value={this.state.service}
             className="search-form__select"
           >
-            <option value="">Services they offer</option>
+            <option value="">Services</option>
             <option value="Mentoring">Mentoring</option>
             <option value="Housing">Housing</option>
             <option value="Short courses, events and activities">
@@ -79,7 +80,7 @@ class SearchForm extends Component {
             <option value="Mental health support">Mental health support</option>
           </select>
           <button type="submit" className="search-form__submit">
-            Search
+            Filter
           </button>
         </form>
       </div>

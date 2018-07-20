@@ -6,8 +6,10 @@ import "./StaticPages.css";
 
 const Header = () => (
   <div className="header__container">
-    <div>
-      <Link to="/">BridgeMap</Link>
+    <div className="header__logo">
+      <Link to="/" className="header__nav__link">
+        BridgeMap
+      </Link>
     </div>
     <ul className="header__nav__container">
       <li className="header__nav__list">

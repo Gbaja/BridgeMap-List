@@ -7,7 +7,7 @@ const JoinForm = props => (
   <div>
     <Header />
     <h2>Join BridgeMap List</h2>
-    <form onSubmit={props.handleSumbit}>
+    <form onSubmit={props.handleSumbit} className="temp-form">
       <fieldset>
         <legend>Basic info</legend>
         <label>Organisation name</label>
