@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisation } from "../requests/airtable";
-import Header from "../StaticPages/Header";
+import Header from "../StaticPages/Header/Header";
 import "./Organisation.css";
 
 const Organisation = props => {

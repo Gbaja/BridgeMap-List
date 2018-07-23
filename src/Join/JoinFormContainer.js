@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
 import { addOrganisation } from "../requests/airtable";
+import Header from "../StaticPages/Header/Header";
 import "./Join.css";
 
 const byNotEqualTo = value => service => service !== value;
@@ -100,7 +101,12 @@ class JoinFormContainer extends Component {
   };
   render() {
     if (this.state.loading) {
-      return <div>loading form...</div>;
+      return (
+        <div>
+          <Header />
+          <p style={{marginTop: "100px"}}>loading form...</p>
+        </div>
+      );
     }
     return (
       <div>

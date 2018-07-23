@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import "./Join.css";
-import Header from "../StaticPages/Header";
+import Header from "../StaticPages/Header/Header";
 
 const JoinForm = props => (
   <div>
