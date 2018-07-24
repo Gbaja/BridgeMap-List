@@ -5,6 +5,7 @@ import PageOrganisation from "./Organisations/PageOrganisation";
 import Organisations from "./Organisations/Organisations";
 import About from "./StaticPages/About";
 import JoinFormContainer from "./Join/JoinFormContainer";
+import FaqContainer from "./StaticPages/Faq/FaqContainer";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route exact path="/" component={Organisations} />
           <Route exact path="/about" component={About} />
           <Route exact path="/join" component={JoinFormContainer} />
+          <Route exact path="/faq" component={FaqContainer} />
           <Route
             exact
             path="/organisation/:name"

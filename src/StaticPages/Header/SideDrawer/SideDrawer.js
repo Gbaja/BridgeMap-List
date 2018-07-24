@@ -21,6 +21,9 @@ const sideDrawer = props => {
           <Link to="/about">About</Link>
         </li>
         <li>
+          <Link to="/faq">FAQ</Link>
+        </li>
+        <li>
           <Link to="/join">Join</Link>
         </li>
       </ul>
