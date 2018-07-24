@@ -1,7 +1,10 @@
 const express = require("express");
+const multer = require("multer");
+const cloudinary = require("cloudinary");
 
 const router = express.Router();
 const airtable = require("../utils/airtable");
+const fileUploadMiddleware = require("../utils/fileUploadMiddleware");
 
 router.get("/api/all_services", (req, res) => {
   airtable.getAllServices().then(services => {
@@ -42,5 +45,13 @@ router.post("/api/find_organisations", (req, res) => {
     res.send(JSON.stringify(organisations));
   });
 });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+router.post("/files", upload.single("file"), fileUploadMiddleware);
 
 module.exports = router;

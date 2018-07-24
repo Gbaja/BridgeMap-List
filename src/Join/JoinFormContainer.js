@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
 
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
@@ -14,6 +15,8 @@ class JoinFormContainer extends Component {
     how: [],
     where: [],
     loading: false,
+    isError: false,
+    formErrors: [],
     form: {
       orgName: "",
       orgType: "",
@@ -41,6 +44,20 @@ class JoinFormContainer extends Component {
     );
   }
 
+  checkError = () => {
+    if (!this.state.form.name) {
+      this.setState({
+        isError: true,
+        formErrors: [...this.state.formErrors, "Name must be entered."]
+      });
+    } else {
+      this.setState({
+        isError: false,
+        formErrors: []
+      });
+    }
+  };
+
   handleInputChange = event => {
     const target = event.target;
     const value = target.value;
@@ -52,13 +69,28 @@ class JoinFormContainer extends Component {
 
   handleSumbit = event => {
     event.preventDefault();
-    console.log(this.state.form);
-    addOrganisation(this.state.form);
+    this.checkError();
+
+    if (!this.state.isError) {
+      console.log(this.state.form);
+      //addOrganisation(this.state.form);
+      // this.setState({
+      //   isError: false,
+      //   formErrors: []
+      // });
+    }
   };
 
   handleFileUpload = event => {
-    this.setState({
-      form: { ...this.state.form, logo: event.target.files[0] }
+    const data = new FormData();
+    data.append("file", event.target.files[0]);
+    data.append("name", "some value user types");
+    data.append("description", "some value user types");
+    axios.post("/files", data).then(response => {
+      // this.setState({
+      //   form: { ...this.state.form, logo: response.data.fileUrl }
+      // });
+      console.log(response);
     });
   };
 
@@ -104,7 +136,7 @@ class JoinFormContainer extends Component {
       return (
         <div>
           <Header />
-          <p style={{marginTop: "100px"}}>loading form...</p>
+          <p style={{ marginTop: "100px" }}>loading form...</p>
         </div>
       );
     }
@@ -121,6 +153,7 @@ class JoinFormContainer extends Component {
           services={this.state.services}
           where={this.state.where}
           how={this.state.how}
+          errors={this.state.formErrors}
         />
       </div>
     );
