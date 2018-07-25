@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Header from "../Header/Header";
+import React, { Component, Fragment } from "react";
 import faqs from "./Faqdata";
+import Faq from "./Faq";
 
 const styles = {
   active: {
@@ -24,21 +24,14 @@ class FaqContainer extends Component {
     return this.state.active === i ? styles.active : styles.inactive;
   };
   render() {
-    //const stateStyle = this.state.active ? styles.active : styles.inactive;
     return (
-      <div>
-        <Header />
-        <ul style={{ marginTop: "100px", marginLeft: "20px" }}>
-          {faqs.map((faq, i) => {
-            return (
-              <li key={i} onClick={this.handleClick(i)}>
-                <span>{faq.question}</span>
-                <div style={this.display(i)}>{faq.answer}</div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <Fragment>
+        <Faq
+          handleClick={this.handleClick}
+          display={this.display}
+          faqs={faqs}
+        />
+      </Fragment>
     );
   }
 }

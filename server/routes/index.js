@@ -14,11 +14,13 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 router.post("/files", upload.single("file"), fileUploadMiddleware);
+
 router.get("/api/all_services", (req, res) => {
   airtable.getAllServices().then(services => {
     res.send(services);
   });
 });
+
 router.get("/api/all_where", (req, res) => {
   airtable.getAllWhere().then(where => {
     res.send(where);

@@ -135,7 +135,7 @@ class JoinFormContainer extends Component {
     if (this.state.loading) {
       return (
         <div>
-          <Header />
+          {/* <Header /> */}
           <p style={{ marginTop: "100px" }}>loading form...</p>
         </div>
       );
