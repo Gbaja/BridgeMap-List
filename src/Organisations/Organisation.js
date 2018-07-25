@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisation } from "../requests/airtable";
-import Header from "../StaticPages/Header/Header";
+import Header from "../Shared/Header/Header";
+import Loading from "../Shared/Loading/Loading";
 import "./Organisation.css";
 
 const Organisation = props => {
@@ -10,9 +11,7 @@ const Organisation = props => {
   if (props.isLoading) {
     return (
       <Fragment>
-        <Header />
-        <div className="loading-spinner" />
-        <p className="loading-text">Loading...</p>
+        <Loading />
       </Fragment>
     );
   }

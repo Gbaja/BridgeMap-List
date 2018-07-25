@@ -6,6 +6,7 @@ import JoinForm from "./JoinForm";
 import { addOrganisation } from "../requests/airtable";
 import Header from "../StaticPages/Header/Header";
 import "./Join.css";
+import Loading from "../Shared/Loading/Loading";
 
 const byNotEqualTo = value => service => service !== value;
 
@@ -135,8 +136,7 @@ class JoinFormContainer extends Component {
     if (this.state.loading) {
       return (
         <div>
-          {/* <Header /> */}
-          <p style={{ marginTop: "100px" }}>loading form...</p>
+          <Loading />
         </div>
       );
     }

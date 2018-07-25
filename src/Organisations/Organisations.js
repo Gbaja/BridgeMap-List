@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisations } from "../requests/airtable";
-import Header from "../StaticPages/Header/Header";
+import Header from "../Shared/Header/Header";
 import SearchForm from "./SearchForm";
 import ScrollTopButton from "./ScrollTopButton";
+import Loading from "../Shared/Loading/Loading";
 
 const Organisations = ({ data, isLoading, error }) => {
   const organisations = data || [];
@@ -15,9 +16,7 @@ const Organisations = ({ data, isLoading, error }) => {
       <SearchForm />
       {isLoading ? (
         <div>
-          {" "}
-          <div className="loading-spinner" />
-          <p className="loading-text">Loading organisations...</p>
+          <Loading />
         </div>
       ) : (
         organisations.map(organisation => (
