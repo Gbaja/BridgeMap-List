@@ -5,6 +5,7 @@ import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisations } from "../requests/airtable";
 import Header from "../StaticPages/Header/Header";
 import SearchForm from "./SearchForm";
+import ScrollTopButton from "./ScrollTopButton";
 
 const Organisations = ({ data, isLoading, error }) => {
   const organisations = data || [];
@@ -38,6 +39,7 @@ const Organisations = ({ data, isLoading, error }) => {
           </ul>
         ))
       )}
+      <ScrollTopButton />
     </div>
   );
 };
