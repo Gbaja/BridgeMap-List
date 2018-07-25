@@ -15,7 +15,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url("./down-arrow.svg") no-repeat right center;
+  background: url("../down-arrow.svg") no-repeat right center;
   background-color: white;
   color: black;
   font-size: 0.85rem;

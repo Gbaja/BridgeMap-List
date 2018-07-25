@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import fetchingDataHOC from "./OrganisationsContainer";
 import { fetchOrganisations } from "../requests/airtable";
 import Header from "../Shared/Header/Header";
-import SearchForm from "./SearchForm";
+import SearchForm from "./SearchForm/SearchFormContainer";
 import ScrollTopButton from "./ScrollTopButton";
 import Loading from "../Shared/Loading/Loading";
 

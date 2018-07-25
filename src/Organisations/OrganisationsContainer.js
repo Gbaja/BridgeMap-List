@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 
-import Header from "../StaticPages/Header/Header";
+import Header from "../Shared/Header/Header";
 
 const fetchingDataHOC = fetchFunc => Comp => {
   return class extends Component {

@@ -4,7 +4,6 @@ import axios from "axios";
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
 import { addOrganisation } from "../requests/airtable";
-import Header from "../StaticPages/Header/Header";
 import "./Join.css";
 import Loading from "../Shared/Loading/Loading";
 
