@@ -64,7 +64,8 @@ const getOrganisations = async () => {
         "Name of Organisation",
         "Type of Organisation",
         "Services Provided to young people"
-      ]
+      ],
+      sort: [{ field: "Name of Organisation", direction: "asc" }]
     })
     .all();
   const organisationsData = records.map(record => record.fields);
@@ -188,7 +189,7 @@ const addOrganisation = async data => {
   const allWhereID = await Promise.all(whereID);
 
   const imageUrl = uploadImage(logo);
-  console.log(imageUrl)
+  console.log(imageUrl);
 
   const organisationInfo = {
     "Name of Organisation": orgName,
