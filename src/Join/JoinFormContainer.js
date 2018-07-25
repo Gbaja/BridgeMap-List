@@ -73,7 +73,7 @@ class JoinFormContainer extends Component {
 
     if (!this.state.isError) {
       console.log(this.state.form);
-      //addOrganisation(this.state.form);
+      addOrganisation(this.state.form);
       // this.setState({
       //   isError: false,
       //   formErrors: []
@@ -87,10 +87,10 @@ class JoinFormContainer extends Component {
     data.append("name", "some value user types");
     data.append("description", "some value user types");
     axios.post("/files", data).then(response => {
-      // this.setState({
-      //   form: { ...this.state.form, logo: response.data.fileUrl }
-      // });
-      console.log(response);
+      this.setState({
+        form: { ...this.state.form, logo: response.data.imageUrl }
+      });
+      console.log(this.state.form.logo);
     });
   };
 

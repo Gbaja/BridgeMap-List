@@ -188,9 +188,6 @@ const addOrganisation = async data => {
 
   const allWhereID = await Promise.all(whereID);
 
-  const imageUrl = uploadImage(logo);
-  console.log(imageUrl);
-
   const organisationInfo = {
     "Name of Organisation": orgName,
     "Type of Organisation": orgType,
@@ -198,6 +195,7 @@ const addOrganisation = async data => {
     Website: website,
     "Organisation email": email,
     "Organisation contact number": number,
+    logo: logo,
     About: about,
     "Where we are based": allWhereID,
     "Age group we work with": ageGroup,

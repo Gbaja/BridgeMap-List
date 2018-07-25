@@ -4,23 +4,13 @@ const cloudinary = require("cloudinary");
 const fileUploadMiddleware = (req, res) => {
   console.log("BBODY: ", req.body);
   cloudinary.uploader
-    .upload_stream(result => {
-      return axios({
-        url: "/api/upload", //API endpoint that needs file URL from CDN
-        method: "post",
-        data: {
-          url: result.secure_url,
-          name: req.body.name,
-          description: req.body.description
-        }
-      })
-        .then(response => {
-          res.status(200).json(response.data.data);
-        })
-        .catch(error => {
-          console.log("ERROR: ", error);
-          res.status(500).json(error.response.data);
-        });
+    .upload_stream((result, error) => {
+      if (error) {
+        console.log("ERROR:", error);
+      } else {
+        console.log("RESULT: ", result);
+        res.send({ imageUrl: result.secure_url });
+      }
     })
     .end(req.file.buffer);
 };
