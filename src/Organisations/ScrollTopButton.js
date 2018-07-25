@@ -11,6 +11,7 @@ class ScrollTopButton extends Component {
     });
   };
   render() {
+    console.log(window.innerHeight);
     return (
       <div className="scroll-top">
         <button className="scroll-top__button" onClick={this.scrollTopHandler}>
