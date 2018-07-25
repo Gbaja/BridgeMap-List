@@ -25,3 +25,14 @@
 .faqs__result {
   width: 90%;
 }
+
+@media screen and (min-width: 600px) {
+  .faqs__container {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+  .faqs__container p {
+    width: inherit;
+  }
+}

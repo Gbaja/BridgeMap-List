@@ -5,6 +5,7 @@
   width: 100%;
   background-color: ghostwhite;
   height: 60px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
 }
 .navigation__container {
   display: flex;
