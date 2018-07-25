@@ -22,6 +22,10 @@ const Organisation = props => {
       {organisation.map(info => (
         <div key={info["Name of Organisation"]} className="org-info__container">
           <h1 className="org-info__name">{info["Name of Organisation"]}</h1>
+          <img
+            src={info.logo}
+            style={{ width: "100px", height: "100px", display: "block" }}
+          />
           <p className="org-info__what">About</p>
           <p className="org-info__about">{info.About}</p>
           <p className="org-info__what">Website</p>

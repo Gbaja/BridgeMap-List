@@ -25,7 +25,8 @@ const OrganisationFields = [
   "Where we are based",
   "Services Provided to young people",
   "How we work with young people",
-  "Age group we work with"
+  "Age group we work with",
+  "logo"
 ];
 
 const getAllServices = async () => {
@@ -63,7 +64,8 @@ const getOrganisations = async () => {
       fields: [
         "Name of Organisation",
         "Type of Organisation",
-        "Services Provided to young people"
+        "Services Provided to young people",
+        "logo"
       ],
       sort: [{ field: "Name of Organisation", direction: "asc" }]
     })

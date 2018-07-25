@@ -1,4 +1,3 @@
-const axios = require("axios");
 const cloudinary = require("cloudinary");
 
 const fileUploadMiddleware = (req, res) => {

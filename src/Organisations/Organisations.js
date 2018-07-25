@@ -23,6 +23,10 @@ const Organisations = ({ data, isLoading, error }) => {
         organisations.map(organisation => (
           <ul key={organisation["Name of Organisation"]}>
             <li>
+              <img
+                src={organisation.logo}
+                style={{ width: "100px", height: "100px", display: "block" }}
+              />
               <p>{organisation["Name of Organisation"]}</p>
               <p>
                 {organisation["Services Provided to young people"].map(
