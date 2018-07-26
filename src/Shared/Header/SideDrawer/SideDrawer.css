@@ -17,18 +17,22 @@
   color: #7d2d45;
   float: right;
   font-size: 3rem;
+  background-color: inherit;
+  border: none;
 }
-.side-drawer ul {
+.side-drawer__ul {
   height: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.side-drawer li {
+.side-drawer__list {
+  font-size: 1.2rem;
+  color: #7d2d45;
   margin: 0.5rem 0;
 }
-.side-drawer a {
+.side-drawer__link {
   color: #7d2d45;
   text-decoration: none;
   font-size: 1.2rem;
