@@ -24,6 +24,7 @@ class JoinFormContainer extends Component {
       regNum: "",
       ageGroup: "",
       logo: "",
+      twitterHandle: "",
       about: "",
       services: [],
       how: [],
@@ -31,6 +32,7 @@ class JoinFormContainer extends Component {
       email: "",
       number: "",
       completedBy: "",
+      completedByRole: "",
       otherInfo: ""
     }
   };

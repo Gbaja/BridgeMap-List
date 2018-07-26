@@ -6,28 +6,38 @@ import "./Navigation.css";
 
 const toolbar = props => (
   <header className="navigation">
-    <nav className="navigation__container">
+    <nav className="navigation-container">
       <div className="navigation__logo">
         <a href="/">BridgeMap</a>
       </div>
-      <div className="navigation_container-items">
-        <ul>
-          <li>
-            <Link to="/">Directory</Link>
+      <div className="navigation-container-items">
+        <ul className="navigation-container__ul">
+          <li className="navigation-container__list">
+            <Link to="/" className="navigation-container__link">
+              Directory
+            </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
+          <li className="navigation-container__list">
+            <Link to="/about" className="navigation-container__link">
+              About
+            </Link>
           </li>
-          <li>
-            <Link to="/faq">FAQ</Link>
+          <li className="navigation-container__list">
+            <Link to="/faq" className="navigation-container__link ">
+              FAQ
+            </Link>
           </li>
-          <li>
-            <Link to="/join">Join</Link>
+          <li className="navigation-container__list">
+            <Link to="/join" className="navigation-container__link">
+              Join
+            </Link>
           </li>
         </ul>
       </div>
       <div className="navigation__toggle-button">
-        <DrawerToggleButton click={props.drawerClickHandler} />
+        <DrawerToggleButton
+          drawerToggleClickHandler={props.drawerToggleClickHandler}
+        />
       </div>
     </nav>
   </header>

@@ -5,12 +5,15 @@ import "./SideDrawer.css";
 
 const sideDrawer = props => {
   let drawerClasses = "side-drawer";
-  if (props.show) {
+  if (props.isSideDrawerOpen) {
     drawerClasses = "side-drawer open";
   }
   return (
     <nav className={drawerClasses}>
-      <button onClick={props.closeSideDrawer} className="side-drawer__button">
+      <button
+        onClick={props.closeSideDrawerHandler}
+        className="side-drawer__button"
+      >
         X
       </button>
       <ul className="side-drawer__ul">

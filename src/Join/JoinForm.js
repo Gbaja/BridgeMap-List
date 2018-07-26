@@ -127,6 +127,13 @@ const JoinForm = props => (
           value={props.form.number}
           onChange={props.handleInputChange}
         />
+        <label>Twitter Handle</label>
+        <input
+          type="text"
+          name="twitterHandle"
+          value={props.form.twitterHandle}
+          onChange={props.handleInputChange}
+        />
       </fieldset>
       <fieldset>
         <legend>Other</legend>
@@ -137,6 +144,15 @@ const JoinForm = props => (
           value={props.form.completedBy}
           onChange={props.handleInputChange}
         />
+        <label>Do you work for the organisation you want to add?</label>
+        <select
+          value={props.form.completedByRole}
+          name="completedByRole"
+          onChange={props.handleInputChange}
+        >
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
         <label>Any other info</label>
         <textarea
           value={props.form.otherInfo}

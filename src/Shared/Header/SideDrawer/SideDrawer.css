@@ -1,6 +1,6 @@
 .side-drawer {
   height: 100%;
-  background-color: white;
+  background-color: ghostwhite;
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -38,8 +38,8 @@
   font-size: 1.2rem;
 }
 
-.side-drawer a:hover,
-.side-drawer a:active {
+.side-drawer__link:hover,
+.side-drawer__link:active {
   color: #fa923f;
 }
 

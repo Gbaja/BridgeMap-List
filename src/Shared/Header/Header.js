@@ -1,29 +1,30 @@
 import React, { Component } from "react";
 
-import Toolbar from "./Navigation/Navigation";
+import Navigation from "./Navigation/Navigation";
 import SideDrawer from "./SideDrawer/SideDrawer";
 
 class Header extends Component {
   state = {
-    sideDrawerOpen: false
+    isSideDrawerOpen: false
   };
+
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+      return { isSideDrawerOpen: !prevState.isSideDrawerOpen };
     });
   };
 
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
+  closeSideDrawerHandler = () => {
+    this.setState({ isSideDrawerOpen: false });
   };
 
   render() {
     return (
       <div style={{ height: "100%" }}>
-        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
+        <Navigation drawerToggleClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer
-          show={this.state.sideDrawerOpen}
-          closeSideDrawer={this.backdropClickHandler}
+          isSideDrawerOpen={this.state.isSideDrawerOpen}
+          closeSideDrawerHandler={this.closeSideDrawerHandler}
         />
       </div>
     );
