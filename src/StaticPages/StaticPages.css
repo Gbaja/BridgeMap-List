@@ -1,10 +1,5 @@
+.join-confirmation,
 .about__container {
-  margin: 0.5rem;
-  margin-top: 80px;
-  padding: 1rem;
-}
-
-.join-confirmation {
   margin-top: 80px;
   padding: 2rem;
   color: #11112f;
@@ -22,8 +17,9 @@
 }
 
 @media screen and (min-width: 600px) {
-  .join-confirmation {
-    width: 80%;
+  .join-confirmation,
+  .about__container {
+    width: 70%;
     margin: 0 auto;
     margin-top: 80px;
   }
