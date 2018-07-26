@@ -25,14 +25,18 @@
   background-size: contain;
   display: block;
 }
-
-.search-form__submit {
+.search-form__button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.search-form__button {
   background-color: #7d2d45;
   padding: 0.5rem;
   color: white;
   border: none;
   font-size: 1.1rem;
   margin-top: 1rem;
+  outline: none;
 }
 @media screen and (min-width: 600px) {
   .search-form {
@@ -43,5 +47,9 @@
   }
   .search-form__select {
     width: 50%;
+  }
+  .search-form__button-container {
+    width: 50%;
+    margin: 0 auto;
   }
 }

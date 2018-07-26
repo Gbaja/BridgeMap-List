@@ -50,9 +50,12 @@ const SearchForm = props => {
             );
           })}
         </select>
-        <button type="submit" className="search-form__submit">
-          Filter
-        </button>
+        <div className="search-form__button-container">
+          <button className="search-form__button">View all</button>
+          <button type="submit" className="search-form__button">
+            Filter
+          </button>
+        </div>
       </form>
     </div>
   );
