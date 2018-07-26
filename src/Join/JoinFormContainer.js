@@ -73,7 +73,9 @@ class JoinFormContainer extends Component {
 
     if (!this.state.isError) {
       console.log(this.state.form);
-      addOrganisation(this.state.form);
+      return addOrganisation(this.state.form).then(() => {
+        this.props.history.push(`/join_confirmation`);
+      });
       // this.setState({
       //   isError: false,
       //   formErrors: []

@@ -3,3 +3,28 @@
   margin-top: 80px;
   padding: 1rem;
 }
+
+.join-confirmation {
+  margin-top: 80px;
+  padding: 2rem;
+  color: #11112f;
+}
+
+.join-confirmation__link {
+  background-color: #7d2d45;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem;
+  text-align: center;
+  display: block;
+  width: 180px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+  .join-confirmation {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 80px;
+  }
+}

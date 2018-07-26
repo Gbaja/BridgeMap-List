@@ -20,7 +20,7 @@
   appearance: none;
   background: url("../down-arrow.svg") no-repeat right center;
   background-color: white;
-  color: black;
+  color: #11112f;
   font-size: 0.85rem;
   background-size: contain;
   display: block;

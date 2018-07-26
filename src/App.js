@@ -6,6 +6,7 @@ import Organisations from "./Organisations/Organisations";
 import About from "./StaticPages/About";
 import JoinFormContainer from "./Join/JoinFormContainer";
 import FaqContainer from "./StaticPages/Faq/FaqContainer";
+import JoinConfirmation from "./StaticPages/JoinConfirmation";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/join" component={JoinFormContainer} />
           <Route exact path="/faq" component={FaqContainer} />
+          <Route exact path="/join_confirmation" component={JoinConfirmation} />
           <Route
             exact
             path="/organisation/:name"

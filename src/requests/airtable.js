@@ -55,7 +55,7 @@ export const fetchOrganisation = name => {
 };
 
 export const addOrganisation = data => {
-  axios
+  return axios
     .post(`/api/add_organisation`, data)
     .then(response => {
       return response;
