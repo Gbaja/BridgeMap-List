@@ -32,3 +32,44 @@
   width: 30px;
   height: 30px;
 }
+
+.organisations__container {
+  list-style: none;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 0;
+  color: #11112f;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  flex-direction: column;
+}
+.organisations__list {
+  margin: 2rem;
+}
+.organisations__img-container {
+  width: 100%;
+  height: 100px;
+  background-color: ghostwhite;
+}
+.organisations__img {
+  width: inherit;
+  height: inherit;
+}
+.organisations__link {
+  background-color: #7d2d45;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 0.3rem;
+  display: block;
+  width: 120px;
+}
+
+@media screen and (min-width: 600px) {
+  .organisations__container {
+    flex-direction: row;
+  }
+  .organisations__list {
+    width: 25%;
+  }
+}

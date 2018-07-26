@@ -2,12 +2,15 @@
   background-color: #11112f;
   color: white;
   padding: 4rem 2rem;
+  margin-top: 60px;
 }
 .search-form__heading {
   font-size: 1.6rem;
 }
 
 .search-form__select {
+  margin: 0 auto;
+  width: 100%;
   margin-top: 1.3rem;
   padding: 0 0.5rem;
   height: 40px;
@@ -31,8 +34,14 @@
   font-size: 1.1rem;
   margin-top: 1rem;
 }
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
+  .search-form {
+    text-align: center;
+  }
   .search-form__heading {
     font-size: 3rem;
+  }
+  .search-form__select {
+    width: 50%;
   }
 }

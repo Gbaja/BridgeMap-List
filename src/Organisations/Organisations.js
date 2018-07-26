@@ -11,7 +11,7 @@ import Loading from "../Shared/Loading/Loading";
 const Organisations = ({ data, isLoading, error }) => {
   const organisations = data || [];
   return (
-    <div>
+    <div className="organisations">
       <Header />
       <SearchForm />
       {isLoading ? (
@@ -19,28 +19,39 @@ const Organisations = ({ data, isLoading, error }) => {
           <Loading />
         </div>
       ) : (
-        organisations.map(organisation => (
-          <ul key={organisation["Name of Organisation"]}>
-            <li>
-              <img
-                src={organisation.logo}
-                style={{ width: "100px", height: "100px", display: "block" }}
-              />
-              <p>{organisation["Name of Organisation"]}</p>
-              <p>
+        <ul className="organisations__container">
+          {organisations.map(organisation => (
+            <li
+              className="organisations__list"
+              key={organisation["Name of Organisation"]}
+            >
+              <div className="organisations__img-container">
+                <img
+                  className="organisations__img"
+                  alt="organisation logo"
+                  src={organisation.logo}
+                />
+              </div>
+              <h3 className="organisations__name">
+                {organisation["Name of Organisation"]}
+              </h3>
+              <p className="organisations__services">
                 {organisation["Services Provided to young people"].map(
                   service => <span key={service}>{service}</span>
                 )}
               </p>
-              <p>{organisation["Type of Organisation"]}</p>
+              <p className="organisations__type">
+                {organisation["Type of Organisation"]}
+              </p>
               <Link
+                className="organisations__link"
                 to={`/organisation/${organisation["Name of Organisation"]}`}
               >
                 View more info
               </Link>
             </li>
-          </ul>
-        ))
+          ))}
+        </ul>
       )}
       <ScrollTopButton />
     </div>
