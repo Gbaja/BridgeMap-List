@@ -98,62 +98,59 @@ const JoinForm = props => (
             className="join__form__textarea"
           />
         </div>
-        <label className="join__form__checkbox-label">
+        <p className="join__form__checkbox-p">
           Services we offer to young people
-        </label>
-        <div>
+        </p>
+        <div className="join__form__checkbox-container">
           {props.services.map(({ Name }) => {
             return (
-              <Fragment key={Name}>
-                <label>{Name}</label>
+              <div key={Name} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">{Name}</label>
                 <input
                   type="checkbox"
                   value={Name}
                   checked={props.form.services.includes(Name)}
                   onChange={props.handleServiceChange}
+                  className="join__form__checkbox-input"
                 />
-              </Fragment>
+              </div>
             );
           })}
         </div>
-        <label className="join__form__checkbox-label">
-          How we work with young people
-        </label>
-        <div>
+        <p className="join__form__checkbox-p">How we work with young people</p>
+        <div className="join__form__checkbox-container" v>
           {props.how.map(({ Name }) => {
             return (
-              <Fragment key={Name}>
-                <label>{Name}</label>
+              <div key={Name} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">{Name}</label>
                 <input
                   type="checkbox"
                   value={Name}
                   checked={props.form.how.includes(Name)}
                   onChange={props.handleHowChange}
+                  className="join__form__checkbox-input"
                 />
-              </Fragment>
+              </div>
             );
           })}
         </div>
-        <label className="join__form__checkbox-label">
-          Areas we work within
-        </label>
-        <div className="join__form__checkbox-input">
+        <p className="join__form__checkbox-p">Areas we work within</p>
+        <div className="join__form__checkbox-container">
           {props.where.map(({ Name }) => {
             return (
-              <Fragment key={Name}>
-                <label>{Name}</label>
+              <div key={Name} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">{Name}</label>
                 <input
                   type="checkbox"
                   value={Name}
                   checked={props.form.where.includes(Name)}
                   onChange={props.handleWhereChange}
+                  className="join__form__checkbox-input"
                 />
-              </Fragment>
+              </div>
             );
           })}
         </div>
-
-        <legend>Contact</legend>
         <div className="join__form__fields-container">
           <label className="join__form__label">Organisation email</label>
           <input

@@ -15,7 +15,7 @@
   color: #7d2d45;
 }
 .join__form__label,
-.join__form__checkbox-label {
+.join__form__checkbox-p {
   color: #11112f;
   font-weight: bolder;
 }
@@ -50,6 +50,15 @@
   left: 0;
   top: 0;
   opacity: 0;
+}
+.join__form__checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.join__form__checkbox-div {
+  width: 48%;
+  margin-top: 0.4rem;
 }
 .join__submit {
   background-color: #7d2d45;
