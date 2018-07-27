@@ -1,38 +1,29 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import SideDrawerLink from "./SideDrawerLink";
 import "./SideDrawer.css";
 
-const sideDrawer = props => {
-  let drawerClasses = "side-drawer";
-  if (props.isSideDrawerOpen) {
-    drawerClasses = "side-drawer open";
-  }
-  const handleLinkClick = props.closeSideDrawerHandler;
+const sideDrawer = ({ isSideDrawerOpen, closeSideDrawerHandler }) => {
+  const handleLinkClick = closeSideDrawerHandler;
+
+  const link = ({ to, text }) => (
+    <SideDrawerLink to={to} onClick={handleLinkClick}>
+      {text}
+    </SideDrawerLink>
+  );
 
   return (
-    <nav className={drawerClasses}>
-      <button
-        onClick={props.closeSideDrawerHandler}
-        className="side-drawer__button"
-      >
+    <nav className={isSideDrawerOpen ? "side-drawer open" : "side-drawer"}>
+      <button onClick={closeSideDrawerHandler} className="side-drawer__button">
         X
       </button>
       <ul className="side-drawer__ul">
         <li className="side-drawer__list">BridgeMap</li>
-        <SideDrawerLink to="/" onClick={handleLinkClick}>
-          Directory
-        </SideDrawerLink>
-        <SideDrawerLink to="/about" onClick={handleLinkClick}>
-          About
-        </SideDrawerLink>
-        <SideDrawerLink to="/faq" onClick={handleLinkClick}>
-          FAQ
-        </SideDrawerLink>
-        <SideDrawerLink to="/join" onClick={handleLinkClick}>
-          Join
-        </SideDrawerLink>
+        {link({ to: "/", text: "Directory" })}
+        {link({ to: "/about", text: "About" })}
+        {link({ to: "/faq", text: "FAQ" })}
+        {link({ to: "/join", text: "Join" })}
       </ul>
     </nav>
   );
