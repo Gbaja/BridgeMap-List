@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import SideDrawerLink from "./SideDrawerLink";
 import "./SideDrawer.css";
 
 const sideDrawer = props => {
@@ -8,6 +9,8 @@ const sideDrawer = props => {
   if (props.isSideDrawerOpen) {
     drawerClasses = "side-drawer open";
   }
+  const handleLinkClick = props.closeSideDrawerHandler;
+
   return (
     <nav className={drawerClasses}>
       <button
@@ -18,26 +21,18 @@ const sideDrawer = props => {
       </button>
       <ul className="side-drawer__ul">
         <li className="side-drawer__list">BridgeMap</li>
-        <li className="side-drawer__list">
-          <Link to="/" className="side-drawer__link">
-            Directory
-          </Link>
-        </li>
-        <li className="side-drawer__list">
-          <Link to="/about" className="side-drawer__link">
-            About
-          </Link>
-        </li>
-        <li className="side-drawer__list">
-          <Link to="/faq" className="side-drawer__link">
-            FAQ
-          </Link>
-        </li>
-        <li className="side-drawer__list" className="side-drawer__list">
-          <Link to="/join" className="side-drawer__link">
-            Join
-          </Link>
-        </li>
+        <SideDrawerLink to="/" onClick={handleLinkClick}>
+          Directory
+        </SideDrawerLink>
+        <SideDrawerLink to="/about" onClick={handleLinkClick}>
+          About
+        </SideDrawerLink>
+        <SideDrawerLink to="/faq" onClick={handleLinkClick}>
+          FAQ
+        </SideDrawerLink>
+        <SideDrawerLink to="/join" onClick={handleLinkClick}>
+          Join
+        </SideDrawerLink>
       </ul>
     </nav>
   );
