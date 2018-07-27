@@ -8,7 +8,7 @@ import SearchForm from "./SearchForm/SearchFormContainer";
 import ScrollTopButton from "./ScrollTopButton";
 import Loading from "../Shared/Loading/Loading";
 
-const Organisations = ({ data, isLoading, error }) => {
+const Organisations = ({ data, isLoading }) => {
   const organisations = data || [];
   return (
     <div className="organisations">
