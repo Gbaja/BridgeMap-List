@@ -64,3 +64,14 @@ export const addOrganisation = data => {
       console.log(err);
     });
 };
+
+export const findOrganisations = data => {
+  return axios
+    .post("/api/find_organisations", data)
+    .then(response => {
+      return response;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
