@@ -203,6 +203,7 @@ const JoinForm = props => (
             onChange={props.handleInputChange}
             className="join__form__input"
           >
+            <option value="" />
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
