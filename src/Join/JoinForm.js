@@ -102,14 +102,16 @@ const JoinForm = props => (
           Services we offer to young people
         </p>
         <div className="join__form__checkbox-container">
-          {props.services.map(({ Name }) => {
+          {props.services.map(service => {
             return (
-              <div key={Name} className="join__form__checkbox-div">
-                <label className="join__form__checkbox-label">{Name}</label>
+              <div key={service.id} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">
+                  {service.fields.Name}
+                </label>
                 <input
                   type="checkbox"
-                  value={Name}
-                  checked={props.form.services.includes(Name)}
+                  value={service.fields.Name}
+                  checked={props.form.services.includes(service.fields.Name)}
                   onChange={props.handleServiceChange}
                   className="join__form__checkbox-input"
                 />
@@ -119,14 +121,16 @@ const JoinForm = props => (
         </div>
         <p className="join__form__checkbox-p">How we work with young people</p>
         <div className="join__form__checkbox-container" v>
-          {props.how.map(({ Name }) => {
+          {props.how.map(how => {
             return (
-              <div key={Name} className="join__form__checkbox-div">
-                <label className="join__form__checkbox-label">{Name}</label>
+              <div key={how.id} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">
+                  {how.fields.Name}
+                </label>
                 <input
                   type="checkbox"
-                  value={Name}
-                  checked={props.form.how.includes(Name)}
+                  value={how.fields.Name}
+                  checked={props.form.how.includes(how.fields.Name)}
                   onChange={props.handleHowChange}
                   className="join__form__checkbox-input"
                 />
@@ -136,14 +140,16 @@ const JoinForm = props => (
         </div>
         <p className="join__form__checkbox-p">Areas we work within</p>
         <div className="join__form__checkbox-container">
-          {props.where.map(({ Name }) => {
+          {props.where.map(where => {
             return (
-              <div key={Name} className="join__form__checkbox-div">
-                <label className="join__form__checkbox-label">{Name}</label>
+              <div key={where.id} className="join__form__checkbox-div">
+                <label className="join__form__checkbox-label">
+                  {where.fields.Name}
+                </label>
                 <input
                   type="checkbox"
-                  value={Name}
-                  checked={props.form.where.includes(Name)}
+                  value={where.fields.Name}
+                  checked={props.form.where.includes(where.fields.Name)}
                   onChange={props.handleWhereChange}
                   className="join__form__checkbox-input"
                 />

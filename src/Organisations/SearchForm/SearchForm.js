@@ -16,8 +16,8 @@ const SearchForm = props => {
         >
           {props.where.map(eachWhere => {
             return (
-              <Fragment key={eachWhere.Name}>
-                <option value={eachWhere.Name}>{eachWhere.Name}</option>
+              <Fragment key={eachWhere.id}>
+                <option value={eachWhere.id}>{eachWhere.fields.Name}</option>
               </Fragment>
             );
           })}
@@ -30,8 +30,8 @@ const SearchForm = props => {
         >
           {props.how.map(eachHow => {
             return (
-              <Fragment key={eachHow.Name}>
-                <option value={eachHow.Name}>{eachHow.Name}</option>
+              <Fragment key={eachHow.id}>
+                <option value={eachHow.id}>{eachHow.fields.Name}</option>
               </Fragment>
             );
           })}
@@ -44,8 +44,8 @@ const SearchForm = props => {
         >
           {props.services.map(service => {
             return (
-              <Fragment key={service.Name}>
-                <option value={service.Name}>{service.Name}</option>
+              <Fragment key={service.id}>
+                <option value={service.id}>{service.fields.Name}</option>
               </Fragment>
             );
           })}

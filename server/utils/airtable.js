@@ -35,7 +35,9 @@ const getAllServices = async () => {
       fields: ["Name"]
     })
     .all();
-  const servicesField = allServicesRecords.map(record => record.fields);
+  const servicesField = allServicesRecords.map(record => {
+    return { id: record.id, fields: record.fields };
+  });
   return servicesField;
 };
 
@@ -45,7 +47,10 @@ const getAllHow = async () => {
       fields: ["Name"]
     })
     .all();
-  const howFields = allHowRecords.map(record => record.fields);
+  console.log(allHowRecords);
+  const howFields = allHowRecords.map(record => {
+    return { id: record.id, fields: record.fields };
+  });
   return howFields;
 };
 const getAllWhere = async () => {
@@ -54,7 +59,9 @@ const getAllWhere = async () => {
       fields: ["Name"]
     })
     .all();
-  const whereField = allWhereRecords.map(record => record.fields);
+  const whereField = allWhereRecords.map(record => {
+    return { id: record.id, fields: record.fields };
+  });
   return whereField;
 };
 const getOrganisations = async () => {

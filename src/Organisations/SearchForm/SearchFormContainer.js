@@ -21,9 +21,12 @@ class SearchFormContainer extends Component {
     return Promise.all([fetchServices(), fetchHows(), fetchWheres()]).then(
       ([services, how, where]) => {
         this.setState({
-          services: [{ Name: "Choose service" }, ...services],
-          how: [{ Name: "Choose how" }, ...how],
-          where: [{ Name: "Choose location" }, ...where],
+          services: [
+            { id: "", fields: { Name: "Choose service" } },
+            ...services
+          ],
+          how: [{ id: "", fields: { Name: "Choose how" } }, ...how],
+          where: [{ id: "", fields: { Name: "Choose location" } }, ...where],
           loading: false
         });
       }
