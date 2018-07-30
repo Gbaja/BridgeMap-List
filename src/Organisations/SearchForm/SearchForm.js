@@ -10,7 +10,7 @@ const SearchForm = props => {
       <form onSubmit={props.handleSubmit}>
         <select
           name="where"
-          onChange={props.handleChange}
+          onChange={props.handleInputChange}
           value={props.form.where}
           className="search-form__select"
         >
@@ -24,7 +24,7 @@ const SearchForm = props => {
         </select>
         <select
           name="how"
-          onChange={props.handleChange}
+          onChange={props.handleInputChange}
           value={props.form.how}
           className="search-form__select"
         >
@@ -38,7 +38,7 @@ const SearchForm = props => {
         </select>
         <select
           name="service"
-          onChange={props.handleChange}
+          onChange={props.handleInputChange}
           value={props.form.service}
           className="search-form__select"
         >
