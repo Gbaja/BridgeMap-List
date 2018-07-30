@@ -36,7 +36,7 @@ const getAllServices = async () => {
     })
     .all();
   const servicesField = allServicesRecords.map(record => record.fields);
-  return [...servicesField, { Name: "" }];
+  return servicesField;
 };
 
 const getAllHow = async () => {
@@ -46,7 +46,7 @@ const getAllHow = async () => {
     })
     .all();
   const howFields = allHowRecords.map(record => record.fields);
-  return [...howFields, { Name: "" }];
+  return howFields;
 };
 const getAllWhere = async () => {
   const allWhereRecords = await base(WHERE_BASE)
@@ -55,7 +55,7 @@ const getAllWhere = async () => {
     })
     .all();
   const whereField = allWhereRecords.map(record => record.fields);
-  return [...whereField, { Name: "" }];
+  return whereField;
 };
 const getOrganisations = async () => {
   const records = await base(ORGANISATION_BASE)
