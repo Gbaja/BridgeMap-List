@@ -1,4 +1,5 @@
 const { airtable } = require("./airtable");
+const joinConfirmationEmail = require("../joinConfirmationEmail");
 
 const addOrganisation = async data => {
   const {
@@ -87,7 +88,8 @@ const addOrganisation = async data => {
   return airtable
     .base(airtable.ORGANISATION_BASE)
     .create(organisationInfo)
-    .then(() => {
+    .then(record => {
+      joinConfirmationEmail(record.fields);
       return { message: "Your organisation has been added." };
     })
     .catch(err => {
