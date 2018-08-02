@@ -34,7 +34,6 @@ const findOrganisations = async data => {
   const organisationsArrayResults = [
     ...new Set([...arrayHow, ...arrayService, ...arrayWhere])
   ];
-  console.log("ORGANISATION ARRAY RESULT: ", organisationsArrayResults);
   const organisationsResults = organisationsArrayResults.map(organisation => {
     return airtable
       .base(airtable.ORGANISATION_BASE)
@@ -52,22 +51,25 @@ const findOrganisations = async data => {
   });
 
   const searchedOrganisations = await Promise.all(organisationsResults);
-  console.log(searchedOrganisations);
-  //   const servicesName = searchedOrganisations[
-  //     "Services Provided to young people"
-  //   ].map(id => {
-  //     console.log("SERVICES: ", id);
-  //     return airtable
-  //       .base(airtable.SERVICES_BASE)
-  //       .find(id)
-  //       .then(record => {
-  //         return record.fields.Name;
-  //       });
-  //   });
-  //   const serviceNameArray = await Promise.all(servicesName);
-  //   searchedOrganisations["Services Provided to young people"] = serviceNameArray;
-  console.log(searchedOrganisations.length);
-  return searchedOrganisations;
+  const mapSearchedOrganisations = searchedOrganisations.map(
+    async organisation => {
+      const getServiceName = organisation[
+        "Services Provided to young people"
+      ].map(serviceId => {
+        return airtable
+          .base(airtable.SERVICES_BASE)
+          .find(serviceId)
+          .then(record => {
+            return record.fields.Name;
+          });
+      });
+      const namesServices = await Promise.all(getServiceName);
+      organisation["Services Provided to young people"] = namesServices;
+      return organisation;
+    }
+  );
+  const searchOrganisationsData = await Promise.all(mapSearchedOrganisations);
+  return searchOrganisationsData;
 };
 
 module.exports = findOrganisations;

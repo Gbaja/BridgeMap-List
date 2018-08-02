@@ -7,7 +7,6 @@ const getAllHow = async () => {
       fields: ["Name"]
     })
     .all();
-  console.log(allHowRecords);
   const howFields = allHowRecords.map(record => {
     return { id: record.id, fields: record.fields };
   });
