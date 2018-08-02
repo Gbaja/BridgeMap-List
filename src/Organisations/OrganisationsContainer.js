@@ -4,6 +4,7 @@ import { fetchOrganisations, findOrganisations } from "../requests/airtable";
 import Organisations from "./Organisations";
 import Header from "../Shared/Header/Header";
 import SearchForm from "./SearchForm/SearchFormContainer";
+import Loading from "../Shared/Loading/Loading";
 
 class OrganisationsContainer extends Component {
   state = {

@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { fetchServices, fetchHows, fetchWheres } from "../../requests/airtable";
 import SearchForm from "./SearchForm";
-import { findOrganisations } from "../../requests/airtable";
 
 class SearchFormContainer extends Component {
   state = {
@@ -15,8 +14,7 @@ class SearchFormContainer extends Component {
       how: "",
       where: "",
       service: ""
-    },
-    searchResult: []
+    }
   };
   componentDidMount() {
     this.setState({ loading: true });

@@ -4,7 +4,6 @@ import UpArrow from "./up-arrow.svg";
 
 class ScrollTopButton extends Component {
   scrollTopHandler = () => {
-    console.log("hey");
     window.scrollTo({
       top: 0,
       behavior: "smooth"
