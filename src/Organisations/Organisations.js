@@ -11,6 +11,11 @@ const Organisations = ({ data, isLoading }) => {
     <div className="organisations">
       {isLoading ? (
         <Loading />
+      ) : data.length === 0 ? (
+        <p>
+          We currently do not have any organisation that matches your search.
+          Please refine your search.
+        </p>
       ) : (
         <ul className="organisations__container">
           {organisations.map(organisation => (
