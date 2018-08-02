@@ -34,23 +34,31 @@ const findOrganisations = async data => {
   const organisationsArrayResults = [
     ...new Set([...arrayHow, ...arrayService, ...arrayWhere])
   ];
-  const organisationsResults = organisationsArrayResults.map(organisation => {
+  const organisationsResults = organisationsArrayResults.map(organisationId => {
     return airtable
       .base(airtable.ORGANISATION_BASE)
-      .find(organisation)
+      .find(organisationId)
       .then(record => {
         const neededData = {
           "Name of Organisation": record.fields["Name of Organisation"],
           "Type of Organisation": record.fields["Type of Organisation"],
           "Services Provided to young people":
             record.fields["Services Provided to young people"],
-          logo: record.fields["logo"]
+          logo: record.fields["logo"],
+          status: record.fields["Status"]
         };
+        //  console.log("NEEDED DATA:", neededData);
         return neededData;
       });
   });
 
-  const searchedOrganisations = await Promise.all(organisationsResults);
+  const searchedOrganisations = await Promise.all(organisationsResults).then(
+    organisations => {
+      return organisations.filter(organisation => {
+        return organisation.status === "Verified";
+      });
+    }
+  );
   const mapSearchedOrganisations = searchedOrganisations.map(
     async organisation => {
       const getServiceName = organisation[
