@@ -1,18 +1,15 @@
 import React from "react";
 
-import Header from "./Header";
+import Header from "../Shared/Header/Header";
 import "./StaticPages.css";
 
 const About = () => (
   <div className="about__container">
     <Header />
-    <h3 className="about__title">
-      Like yellow pages, but for organisations that work with young people.{" "}
-    </h3>
     <p className="about__text">
-      We've built an online directory for young people (10 - 25 years old) to
-      use when searching for organisations that can support/advise them on
-      different aspects of their life.{" "}
+      BridgeMap List is an online directory for young people (10 - 25 years old)
+      to use when searching for organisations that can support/advise them on
+      different aspects of their life.
     </p>
     <p className="about__text">
       If you are an organisation and you provide a service for young people, you

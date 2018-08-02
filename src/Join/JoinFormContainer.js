@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
 
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
 import { addOrganisation } from "../requests/airtable";
 import "./Join.css";
+import Loading from "../Shared/Loading/Loading";
 
 const byNotEqualTo = value => service => service !== value;
 
@@ -13,6 +15,8 @@ class JoinFormContainer extends Component {
     how: [],
     where: [],
     loading: false,
+    isError: false,
+    formErrors: [],
     form: {
       orgName: "",
       orgType: "",
@@ -20,6 +24,7 @@ class JoinFormContainer extends Component {
       regNum: "",
       ageGroup: "",
       logo: "",
+      twitterHandle: "",
       about: "",
       services: [],
       how: [],
@@ -27,6 +32,7 @@ class JoinFormContainer extends Component {
       email: "",
       number: "",
       completedBy: "",
+      completedByRole: "",
       otherInfo: ""
     }
   };
@@ -40,6 +46,20 @@ class JoinFormContainer extends Component {
     );
   }
 
+  checkError = () => {
+    if (!this.state.form.name) {
+      this.setState({
+        isError: true,
+        formErrors: [...this.state.formErrors, "Name must be entered."]
+      });
+    } else {
+      this.setState({
+        isError: false,
+        formErrors: []
+      });
+    }
+  };
+
   handleInputChange = event => {
     const target = event.target;
     const value = target.value;
@@ -51,13 +71,31 @@ class JoinFormContainer extends Component {
 
   handleSumbit = event => {
     event.preventDefault();
-    console.log(this.state.form);
-    addOrganisation(this.state.form);
+    this.checkError();
+    this.setState({ loading: true });
+    if (!this.state.isError) {
+      console.log(this.state.form);
+      return addOrganisation(this.state.form).then(() => {
+        this.setState({ loading: false });
+        this.props.history.push(`/join_confirmation`);
+      });
+      // this.setState({
+      //   isError: false,
+      //   formErrors: []
+      // });
+    }
   };
 
   handleFileUpload = event => {
-    this.setState({
-      form: { ...this.state.form, logo: event.target.files[0] }
+    const data = new FormData();
+    data.append("file", event.target.files[0]);
+    data.append("name", "some value user types");
+    data.append("description", "some value user types");
+    axios.post("/files", data).then(response => {
+      this.setState({
+        form: { ...this.state.form, logo: response.data.imageUrl }
+      });
+      console.log(this.state.form.logo);
     });
   };
 
@@ -100,7 +138,11 @@ class JoinFormContainer extends Component {
   };
   render() {
     if (this.state.loading) {
-      return <div>loading form...</div>;
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
     }
     return (
       <div>
@@ -115,6 +157,7 @@ class JoinFormContainer extends Component {
           services={this.state.services}
           where={this.state.where}
           how={this.state.how}
+          errors={this.state.formErrors}
         />
       </div>
     );

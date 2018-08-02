@@ -55,8 +55,19 @@ export const fetchOrganisation = name => {
 };
 
 export const addOrganisation = data => {
-  axios
+  return axios
     .post(`/api/add_organisation`, data)
+    .then(response => {
+      return response;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const findOrganisations = data => {
+  return axios
+    .post("/api/find_organisations", data)
     .then(response => {
       return response;
     })

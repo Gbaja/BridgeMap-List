@@ -1,0 +1,55 @@
+.org-info__container {
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #11112f;
+  padding: 2rem;
+}
+.org-info__top {
+  display: flex;
+  flex-direction: column;
+}
+.org-info__name,
+.org-info__image {
+  align-self: center;
+}
+.org-info__what {
+  font-weight: bold;
+}
+.org-info__image {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+.scroll-top {
+  width: 50px;
+  height: 40px;
+  border: 2px solid #7d2d45;
+  border-radius: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+.scroll-top__button {
+  border: none;
+  background-color: white;
+  border-radius: 100%;
+  width: inherit;
+  height: inherit;
+  outline: none;
+  cursor: pointer;
+}
+.scroll-top__img {
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (min-width: 600px) {
+  .org-info__container {
+    width: 70%;
+  }
+  .org-info__top {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}

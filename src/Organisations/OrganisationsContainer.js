@@ -1,50 +1,55 @@
-import React, {Component, Fragment} from "react";
-import {withRouter} from "react-router-dom"
+import React, { Component, Fragment } from "react";
 
-import Header from "../StaticPages/Header"
+import { fetchOrganisations, findOrganisations } from "../requests/airtable";
+import Organisations from "./Organisations";
+import Header from "../Shared/Header/Header";
+import SearchForm from "./SearchForm/SearchFormContainer";
+import Loading from "../Shared/Loading/Loading";
 
-const fetchingDataHOC = (fetchFunc) => (Comp) => {
-    return class extends Component {
-        state = {
-            data: [],
-            isLoading: false,
-            error: null,
-        };
+class OrganisationsContainer extends Component {
+  state = {
+    data: [],
+    isLoading: false,
+    error: null
+  };
 
-        componentDidMount() {
-            this.setState({ isLoading: true });
-            fetchFunc(this.props.organisationName || this.props.match.params.name)
-              .then(data =>
-                this.setState({ data, isLoading: false })
-              )
-              .catch(error =>
-                this.setState({ error, isLoading: false })
-              );
-        }
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetchOrganisations()
+      .then(data => this.setState({ data, isLoading: false }))
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
 
-        render() {
-            if (this.state.error) {
-                return <Fragment>
-                    <Header />
-                    <p>{this.state.error.message}</p>
-                </Fragment>
-            }
+  handleSearch = details => {
+    this.setState({ isLoading: true });
+    findOrganisations(details).then(response => {
+      this.setState({ data: response.data, isLoading: false });
+    });
+  };
 
-            if (this.state.isLoading) {
-                return <Fragment>
-                    <Header />
-                    <div className="loading-spinner"></div>
-                    <p className="loading-text">Loading...</p>
-                </Fragment>
-            }
+  handleViewAll = () => {
+    this.setState({ isLoading: true });
+    fetchOrganisations().then(data =>
+      this.setState({ data, isLoading: false })
+    );
+  };
 
-            return (
-                <div>
-                    <Comp {...this.props} {...this.state} />
-                </div>
-            )
-        }
-    }
+  render() {
+    return (
+      <div>
+        <Header />
+        <SearchForm
+          handleSearch={this.handleSearch}
+          handleViewAll={this.handleViewAll}
+        />
+        <Organisations
+          data={this.state.data}
+          isLoading={this.state.isLoading}
+          error={this.state.error}
+        />
+      </div>
+    );
+  }
 }
 
-export default fetchingDataHOC
+export default OrganisationsContainer;
