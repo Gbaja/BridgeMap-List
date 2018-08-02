@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import fetchingDataHOC from "./OrganisationsContainer";
+import fetchingDataHOC from "./FetchingDataHOC";
 import { fetchOrganisation } from "../requests/airtable";
 import Header from "../Shared/Header/Header";
 import Loading from "../Shared/Loading/Loading";

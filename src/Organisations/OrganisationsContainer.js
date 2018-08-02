@@ -1,40 +1,54 @@
 import React, { Component, Fragment } from "react";
-import { withRouter } from "react-router-dom";
 
+import { fetchOrganisations, findOrganisations } from "../requests/airtable";
+import Organisations from "./Organisations";
 import Header from "../Shared/Header/Header";
+import SearchForm from "./SearchForm/SearchFormContainer";
 
-const fetchingDataHOC = fetchFunc => Comp => {
-  return class extends Component {
-    state = {
-      data: [],
-      isLoading: false,
-      error: null
-    };
-
-    componentDidMount() {
-      this.setState({ isLoading: true });
-      fetchFunc(this.props.organisationName || this.props.match.params.name)
-        .then(data => this.setState({ data, isLoading: false }))
-        .catch(error => this.setState({ error, isLoading: false }));
-    }
-
-    render() {
-      if (this.state.error) {
-        return (
-          <Fragment>
-            <Header />
-            <p>{this.state.error.message}</p>
-          </Fragment>
-        );
-      }
-
-      return (
-        <div>
-          <Comp {...this.props} {...this.state} />
-        </div>
-      );
-    }
+class OrganisationsContainer extends Component {
+  state = {
+    data: [],
+    isLoading: false,
+    error: null
   };
-};
 
-export default fetchingDataHOC;
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetchOrganisations()
+      .then(data => this.setState({ data, isLoading: false }))
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  handleSearch = details => {
+    this.setState({ isLoading: true });
+    findOrganisations(details).then(response => {
+      this.setState({ data: response.data, isLoading: false });
+    });
+  };
+
+  handleViewAll = () => {
+    this.setState({ isLoading: true });
+    fetchOrganisations().then(data =>
+      this.setState({ data, isLoading: false })
+    );
+  };
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <SearchForm
+          handleSearch={this.handleSearch}
+          handleViewAll={this.handleViewAll}
+        />
+        <Organisations
+          data={this.state.data}
+          isLoading={this.state.isLoading}
+          error={this.state.error}
+        />
+      </div>
+    );
+  }
+}
+
+export default OrganisationsContainer;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import PageOrganisation from "./Organisations/PageOrganisation";
-import Organisations from "./Organisations/OrgsContainer";
+import PageOrganisation from "./Organisation/PageOrganisation";
+import OrganisationsContainer from "./Organisations/OrganisationsContainer";
 import About from "./StaticPages/About";
 import JoinFormContainer from "./Join/JoinFormContainer";
 import FaqContainer from "./StaticPages/Faq/FaqContainer";
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Organisations} />
+          <Route exact path="/" component={OrganisationsContainer} />
           <Route exact path="/about" component={About} />
           <Route exact path="/join" component={JoinFormContainer} />
           <Route exact path="/faq" component={FaqContainer} />
