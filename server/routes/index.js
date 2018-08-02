@@ -40,6 +40,7 @@ router.get("/api/all_how", (req, res) => {
 });
 
 router.get("/api/all_organisations", (req, res) => {
+  console.log("ALL ORGANISATION");
   allOrganisations().then(organisations => {
     res.send(JSON.stringify(organisations));
   });
@@ -58,6 +59,7 @@ router.post(`/api/add_organisation`, (req, res) => {
 });
 
 router.post("/api/find_organisations", (req, res) => {
+  console.log("FIND ORGANISATION");
   findOrganisations(req.body).then(organisations => {
     res.send(JSON.stringify(organisations));
   });

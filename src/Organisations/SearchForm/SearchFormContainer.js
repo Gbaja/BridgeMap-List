@@ -47,10 +47,7 @@ class SearchFormContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state.form);
-    return findOrganisations(this.state.form).then(response => {
-      this.setState({ searchResult: response.data });
-      console.log("SEARCH RESULT: ", this.state.searchResult);
-    });
+    this.props.handleSearch(this.state.form);
   };
 
   render() {
@@ -63,6 +60,7 @@ class SearchFormContainer extends Component {
           handleInputChange={this.handleInputChange}
           handleSubmit={this.handleSubmit}
           form={this.state.form}
+          handleViewAll={this.props.handleViewAll}
         />
       </div>
     );

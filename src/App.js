@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import PageOrganisation from "./Organisations/PageOrganisation";
-import Organisations from "./Organisations/Organisations";
+import Organisations from "./Organisations/OrgsContainer";
 import About from "./StaticPages/About";
 import JoinFormContainer from "./Join/JoinFormContainer";
 import FaqContainer from "./StaticPages/Faq/FaqContainer";

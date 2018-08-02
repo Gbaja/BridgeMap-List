@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import fetchingDataHOC from "./OrganisationsContainer";
-import { fetchOrganisations } from "../requests/airtable";
+// import fetchingDataHOC from "./OrganisationsContainer";
+// import { fetchOrganisations } from "../requests/airtable";
 import Header from "../Shared/Header/Header";
-import SearchForm from "./SearchForm/SearchFormContainer";
+// import SearchForm from "./SearchForm/SearchFormContainer";
 import ScrollTopButton from "./ScrollTopButton";
 import Loading from "../Shared/Loading/Loading";
 
@@ -13,7 +13,7 @@ const Organisations = ({ data, isLoading }) => {
   return (
     <div className="organisations">
       <Header />
-      <SearchForm />
+      {/* <SearchForm /> */}
       {isLoading ? (
         <div>
           <Loading />
@@ -58,4 +58,5 @@ const Organisations = ({ data, isLoading }) => {
   );
 };
 
-export default fetchingDataHOC(fetchOrganisations)(Organisations);
+//export default fetchingDataHOC(fetchOrganisations)(Organisations);
+export default Organisations;

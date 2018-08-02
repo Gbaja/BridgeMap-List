@@ -57,7 +57,13 @@ const SearchForm = props => {
           })}
         </select>
         <div className="search-form__button-container">
-          <button className="search-form__button">View all</button>
+          <button
+            type="button"
+            className="search-form__button"
+            onClick={props.handleViewAll}
+          >
+            View all
+          </button>
           <button type="submit" className="search-form__button">
             Filter
           </button>
