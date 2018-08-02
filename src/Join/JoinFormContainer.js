@@ -72,10 +72,11 @@ class JoinFormContainer extends Component {
   handleSumbit = event => {
     event.preventDefault();
     this.checkError();
-
+    this.setState({ loading: true });
     if (!this.state.isError) {
       console.log(this.state.form);
       return addOrganisation(this.state.form).then(() => {
+        this.setState({ loading: false });
         this.props.history.push(`/join_confirmation`);
       });
       // this.setState({
