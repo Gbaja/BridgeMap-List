@@ -48,6 +48,7 @@ class JoinFormContainer extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.setState({ loading: true });
     return Promise.all([fetchServices(), fetchHows(), fetchWheres()]).then(
       ([services, how, where]) => {
@@ -96,6 +97,7 @@ class JoinFormContainer extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    window.scrollTo(0, 0);
     const err = this.validate();
     if (!err) {
       console.log(this.state.form);
@@ -103,6 +105,7 @@ class JoinFormContainer extends Component {
       return addOrganisation(this.state.form).then(response => {
         console.log(response.data);
         if (response.data.type === "error") {
+          window.scrollTo(0, 0);
           return this.setState({
             ...this.state,
             loading: false,
