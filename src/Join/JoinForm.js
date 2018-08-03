@@ -104,6 +104,7 @@ const JoinForm = props => (
             className="join-form__input-file"
           />
         </div>
+        <p>{props.logoError && props.logoError}</p>
         <div className="join__form__fields-container">
           <label className="join__form__label">About</label>
           <textarea

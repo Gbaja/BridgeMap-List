@@ -27,6 +27,7 @@ class JoinFormContainer extends Component {
       emailError: "",
       submissionError: ""
     },
+    logoError: "",
     form: {
       orgName: "",
       orgType: "",
@@ -124,12 +125,29 @@ class JoinFormContainer extends Component {
     data.append("file", event.target.files[0]);
     data.append("name", "some value user types");
     data.append("description", "some value user types");
-    axios.post("/files", data).then(response => {
-      this.setState({
-        form: { ...this.state.form, logo: response.data.imageUrl }
+    axios
+      .post("/files", data)
+      .then(response => {
+        console.log("RESPONSE: ", response);
+
+        this.setState({
+          form: { ...this.state.form, logo: response.data.imageUrl }
+        });
+        console.log(this.state.form.logo);
+      })
+      .catch(err => {
+        console.log("ERROR:", err.response.data);
+        if (err.response.status === 422) {
+          console.log(err.response.data.message);
+          this.setState({
+            logoError: err.response.data.message
+          });
+        } else {
+          this.setState({
+            logoError: "There was a problem uploading logo. Please contact us."
+          });
+        }
       });
-      console.log(this.state.form.logo);
-    });
   };
 
   handleServiceChange = ({ target: { checked, value } }) => {
@@ -189,6 +207,7 @@ class JoinFormContainer extends Component {
           where={this.state.where}
           how={this.state.how}
           formErrors={this.state.formErrors}
+          logoError={this.state.logoError}
         />
       </div>
     );
