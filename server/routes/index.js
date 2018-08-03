@@ -53,7 +53,7 @@ router.get(`/api/one_organisation`, (req, res) => {
 });
 
 router.post(`/api/add_organisation`, (req, res) => {
-  addOrganisation(req.body).then(response => {
+  addOrganisation(res, req.body).then(response => {
     res.send(JSON.stringify(response));
   });
 });

@@ -4,10 +4,8 @@ import axios from "axios";
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
 import {
-  emptyValues,
   checkLength,
   checkEmail,
-  checkValueType,
   emptyValuesAndType
 } from "../helpers/formValidation";
 import { addOrganisation } from "../requests/airtable";
@@ -26,7 +24,8 @@ class JoinFormContainer extends Component {
     formErrors: {
       emptyValues: "",
       lengthError: "",
-      emailError: ""
+      emailError: "",
+      submissionError: ""
     },
     form: {
       orgName: "",
@@ -100,9 +99,19 @@ class JoinFormContainer extends Component {
     const err = this.validate();
     if (!err) {
       console.log(this.state.form);
-      return addOrganisation(this.state.form).then(() => {
-        this.setState({ loading: false });
-        this.props.history.push(`/join_confirmation`);
+      this.setState({ loading: true });
+      return addOrganisation(this.state.form).then(response => {
+        console.log(response.data);
+        if (response.data.type === "error") {
+          return this.setState({
+            ...this.state,
+            loading: false,
+            formErrors: { submissionError: response.data.message }
+          });
+        } else {
+          this.setState({ loading: false });
+          this.props.history.push(`/join_confirmation`);
+        }
       });
     }
   };
@@ -130,7 +139,6 @@ class JoinFormContainer extends Component {
         form: { ...form, services: services.filter(byNotEqualTo(value)) }
       });
     }
-    console.log(value, checked);
   };
 
   handleHowChange = ({ target: { checked, value } }) => {
@@ -157,13 +165,13 @@ class JoinFormContainer extends Component {
     }
   };
   render() {
-    // if (this.state.loading) {
-    //   return (
-    //     <div>
-    //       <Loading />
-    //     </div>
-    //   );
-    // }
+    if (this.state.loading) {
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
+    }
     return (
       <div>
         <JoinForm

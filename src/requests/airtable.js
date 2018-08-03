@@ -61,7 +61,11 @@ export const addOrganisation = data => {
       return response;
     })
     .catch(err => {
-      console.log(err);
+      if (err.response.status === 422) {
+        return err.response;
+      } else {
+        console.log("ADD ORGANISATION ERROR: ", err);
+      }
     });
 };
 
