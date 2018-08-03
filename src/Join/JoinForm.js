@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import "./Join.css";
@@ -17,7 +17,21 @@ const JoinForm = props => (
         <Link to="/faq">Frequently Asked Questions</Link>
       </p>
       <form onSubmit={props.handleSubmit} className="join__form">
-        <p>{props.formErrors && Object.values(props.formErrors).join("")}</p>
+        {Object.values(props.formErrors).length !== 0 ? (
+          <ul>
+            {Object.values(props.formErrors).map(error => {
+              return (
+                error && (
+                  <Fragment key={error}>
+                    <li>{error && error}</li>
+                  </Fragment>
+                )
+              );
+            })}
+          </ul>
+        ) : (
+          false
+        )}
         <div className="join__form__fields-container">
           <label className="join__form__label">Organisation name</label>
           <input

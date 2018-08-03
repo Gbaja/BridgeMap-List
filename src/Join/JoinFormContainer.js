@@ -7,7 +7,8 @@ import {
   emptyValues,
   checkLength,
   checkEmail,
-  checkValueType
+  checkValueType,
+  emptyValuesAndType
 } from "../helpers/formValidation";
 import { addOrganisation } from "../requests/airtable";
 import "./Join.css";
@@ -25,8 +26,7 @@ class JoinFormContainer extends Component {
     formErrors: {
       emptyValues: "",
       lengthError: "",
-      emailError: "",
-      typeError: ""
+      emailError: ""
     },
     form: {
       orgName: "",
@@ -61,7 +61,7 @@ class JoinFormContainer extends Component {
     let isError = false;
     const errors = {};
 
-    if (emptyValues(this.state.form)) {
+    if (emptyValuesAndType(this.state.form)) {
       isError = true;
       errors.emptyValues = "Please make sure you have completed all fields";
     }
@@ -75,14 +75,9 @@ class JoinFormContainer extends Component {
       errors.lengthError =
         "Please make sure your about and any other info is less than 150 words.";
     }
-    if (checkEmail(this.state.form.email)) {
+    if (!checkEmail(this.state.form.email)) {
       isError = true;
       errors.emailError = "Please make sure you have entered a valid email.";
-    }
-    if (checkValueType(this.state.form)) {
-      isError = true;
-      errors.typeError =
-        "Please make sure you have not tried to break our app.";
     }
     this.setState({
       ...this.state,
@@ -105,10 +100,10 @@ class JoinFormContainer extends Component {
     const err = this.validate();
     if (!err) {
       console.log(this.state.form);
-      // return addOrganisation(this.state.form).then(() => {
-      //   this.setState({ loading: false });
-      //   this.props.history.push(`/join_confirmation`);
-      //});
+      return addOrganisation(this.state.form).then(() => {
+        this.setState({ loading: false });
+        this.props.history.push(`/join_confirmation`);
+      });
     }
   };
 

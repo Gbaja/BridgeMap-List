@@ -1,4 +1,4 @@
-export const emptyValues = data => {
+export const emptyValuesAndType = data => {
   if (
     data.orgName.length === 0 ||
     data.orgType.length === 0 ||
@@ -25,29 +25,6 @@ export const checkLength = ({ about, other }) => {
   const aboutWordCount = about.trim().split(/\s+/).length;
   const otherWordCount = other.trim().split(/\s+/).length;
   return aboutWordCount > 150 || otherWordCount > 150 ? true : false;
-};
-
-export const checkValueType = data => {
-  if (
-    typeof data.orgName === "string" ||
-    typeof data.orgType === "string" ||
-    typeof data.website === "string" ||
-    typeof data.regNum === "string" ||
-    typeof data.ageGroup === "string" ||
-    typeof data.logo === "string" ||
-    typeof data.twitterHandle === "string" ||
-    typeof data.about === "string" ||
-    Array.isArray(data.services) ||
-    Array.isArray(data.how) ||
-    Array.isArray(data.where) ||
-    typeof data.services === "string" ||
-    typeof data.email === "string" ||
-    typeof data.number === "string" ||
-    typeof data.completedBy === "string" ||
-    typeof data.otherInfo === "string"
-  ) {
-    return true;
-  }
 };
 
 export const checkEmail = string => {
