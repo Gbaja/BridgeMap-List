@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from "react";
-import axios from "axios";
+import React, { Component } from "react";
 
 import { fetchServices, fetchHows, fetchWheres } from "../../requests/airtable";
 import SearchForm from "./SearchForm";
