@@ -3,6 +3,12 @@ import axios from "axios";
 
 import { fetchServices, fetchHows, fetchWheres } from "../requests/airtable";
 import JoinForm from "./JoinForm";
+import {
+  emptyValues,
+  checkLength,
+  checkEmail,
+  checkValueType
+} from "../helpers/formValidation";
 import { addOrganisation } from "../requests/airtable";
 import "./Join.css";
 import Loading from "../Shared/Loading/Loading";
@@ -17,7 +23,10 @@ class JoinFormContainer extends Component {
     loading: false,
     isError: false,
     formErrors: {
-      emptyValues: ""
+      emptyValues: "",
+      lengthError: "",
+      emailError: "",
+      typeError: ""
     },
     form: {
       orgName: "",
@@ -52,32 +61,33 @@ class JoinFormContainer extends Component {
     let isError = false;
     const errors = {};
 
-    if (
-      this.state.form.orgName.length === 0 ||
-      this.state.form.orgType.length === 0 ||
-      this.state.form.website.length === 0 ||
-      this.state.form.regNum.length === 0 ||
-      this.state.form.ageGroup.length === 0 ||
-      this.state.form.logo.length === 0 ||
-      this.state.form.twitterHandle.length === 0 ||
-      this.state.form.about.length === 0 ||
-      this.state.form.services.length === 0 ||
-      this.state.form.how.length === 0 ||
-      this.state.form.where.length === 0 ||
-      this.state.form.services.length === 0 ||
-      this.state.form.email.length === 0 ||
-      this.state.form.number.length === 0 ||
-      this.state.form.completedBy.length === 0 ||
-      this.state.form.otherInfo.length === 0
-    ) {
+    if (emptyValues(this.state.form)) {
       isError = true;
       errors.emptyValues = "Please make sure you have completed all fields";
+    }
+    if (
+      checkLength({
+        about: this.state.form.about,
+        other: this.state.form.otherInfo
+      })
+    ) {
+      isError = true;
+      errors.lengthError =
+        "Please make sure your about and any other info is less than 150 words.";
+    }
+    if (checkEmail(this.state.form.email)) {
+      isError = true;
+      errors.emailError = "Please make sure you have entered a valid email.";
+    }
+    if (checkValueType(this.state.form)) {
+      isError = true;
+      errors.typeError =
+        "Please make sure you have not tried to break our app.";
     }
     this.setState({
       ...this.state,
       formErrors: { ...errors }
     });
-
     return isError;
   };
 
@@ -99,10 +109,6 @@ class JoinFormContainer extends Component {
       //   this.setState({ loading: false });
       //   this.props.history.push(`/join_confirmation`);
       //});
-      // this.setState({
-      //   isError: false,
-      //   formErrors: []
-      // });
     }
   };
 
