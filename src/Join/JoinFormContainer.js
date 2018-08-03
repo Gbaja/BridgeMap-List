@@ -16,7 +16,9 @@ class JoinFormContainer extends Component {
     where: [],
     loading: false,
     isError: false,
-    formErrors: [],
+    formErrors: {
+      emptyValues: ""
+    },
     form: {
       orgName: "",
       orgType: "",
@@ -46,18 +48,37 @@ class JoinFormContainer extends Component {
     );
   }
 
-  checkError = () => {
-    if (!this.state.form.name) {
-      this.setState({
-        isError: true,
-        formErrors: [...this.state.formErrors, "Name must be entered."]
-      });
-    } else {
-      this.setState({
-        isError: false,
-        formErrors: []
-      });
+  validate = () => {
+    let isError = false;
+    const errors = {};
+
+    if (
+      this.state.form.orgName.length === 0 ||
+      this.state.form.orgType.length === 0 ||
+      this.state.form.website.length === 0 ||
+      this.state.form.regNum.length === 0 ||
+      this.state.form.ageGroup.length === 0 ||
+      this.state.form.logo.length === 0 ||
+      this.state.form.twitterHandle.length === 0 ||
+      this.state.form.about.length === 0 ||
+      this.state.form.services.length === 0 ||
+      this.state.form.how.length === 0 ||
+      this.state.form.where.length === 0 ||
+      this.state.form.services.length === 0 ||
+      this.state.form.email.length === 0 ||
+      this.state.form.number.length === 0 ||
+      this.state.form.completedBy.length === 0 ||
+      this.state.form.otherInfo.length === 0
+    ) {
+      isError = true;
+      errors.emptyValues = "Please make sure you have completed all fields";
     }
+    this.setState({
+      ...this.state,
+      formErrors: { ...errors }
+    });
+
+    return isError;
   };
 
   handleInputChange = event => {
@@ -69,16 +90,15 @@ class JoinFormContainer extends Component {
     });
   };
 
-  handleSumbit = event => {
+  handleSubmit = event => {
     event.preventDefault();
-    this.checkError();
-    this.setState({ loading: true });
-    if (!this.state.isError) {
+    const err = this.validate();
+    if (!err) {
       console.log(this.state.form);
-      return addOrganisation(this.state.form).then(() => {
-        this.setState({ loading: false });
-        this.props.history.push(`/join_confirmation`);
-      });
+      // return addOrganisation(this.state.form).then(() => {
+      //   this.setState({ loading: false });
+      //   this.props.history.push(`/join_confirmation`);
+      //});
       // this.setState({
       //   isError: false,
       //   formErrors: []
@@ -103,7 +123,6 @@ class JoinFormContainer extends Component {
     const { form } = this.state;
     const { services } = form;
     if (checked) {
-      /// ...form is because the value we are changing is nested
       this.setState({ form: { ...form, services: [...services, value] } });
     } else {
       this.setState({
@@ -137,13 +156,13 @@ class JoinFormContainer extends Component {
     }
   };
   render() {
-    if (this.state.loading) {
-      return (
-        <div>
-          <Loading />
-        </div>
-      );
-    }
+    // if (this.state.loading) {
+    //   return (
+    //     <div>
+    //       <Loading />
+    //     </div>
+    //   );
+    // }
     return (
       <div>
         <JoinForm
@@ -152,12 +171,12 @@ class JoinFormContainer extends Component {
           handleServiceChange={this.handleServiceChange}
           handleHowChange={this.handleHowChange}
           handleWhereChange={this.handleWhereChange}
-          handleSumbit={this.handleSumbit}
+          handleSubmit={this.handleSubmit}
           handleFileUpload={this.handleFileUpload}
           services={this.state.services}
           where={this.state.where}
           how={this.state.how}
-          errors={this.state.formErrors}
+          formErrors={this.state.formErrors}
         />
       </div>
     );

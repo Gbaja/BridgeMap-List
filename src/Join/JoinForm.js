@@ -9,14 +9,15 @@ const JoinForm = props => (
     <Header />
     <div className="join">
       <h2>Join BridgeMap List</h2>
+
       <p>
         Any organisation that does any kind of work either directly or through
         their outreach/CSR can fill in the form to join BridgeMap list. Before
         filling out this form, we suggest you read through our{" "}
         <Link to="/faq">Frequently Asked Questions</Link>
       </p>
-      <form onSubmit={props.handleSumbit} className="join__form">
-        <p>{props.errors && props.errors.join("")}</p>
+      <form onSubmit={props.handleSubmit} className="join__form">
+        <p>{props.formErrors && Object.values(props.formErrors).join("")}</p>
         <div className="join__form__fields-container">
           <label className="join__form__label">Organisation name</label>
           <input
