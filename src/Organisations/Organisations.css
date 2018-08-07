@@ -23,12 +23,8 @@
   height: inherit;
 }
 .organisations__link {
-  background-color: #7d2d45;
-  color: white;
-  text-decoration: none;
-  padding: 0.6rem 0.3rem;
+  color: #7d2d45;
   display: block;
-  width: 120px;
 }
 
 .scroll-top {
