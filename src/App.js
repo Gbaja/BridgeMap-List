@@ -8,6 +8,7 @@ import JoinFormContainer from "./Join/JoinFormContainer";
 import FaqContainer from "./StaticPages/Faq/FaqContainer";
 import JoinConfirmation from "./StaticPages/JoinConfirmation";
 import ClientError from "./ErrorPages/ClientError";
+import ServerError from "./ErrorPages/ServerError";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             path="/organisation/:name"
             component={PageOrganisation}
           />
+          <Route path="/server_error" component={ServerError} />
           <Route path="*" component={ClientError} />
         </Switch>
       </BrowserRouter>

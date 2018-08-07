@@ -104,7 +104,7 @@ class JoinFormContainer extends Component {
       console.log(this.state.form);
       this.setState({ loading: true });
       return addOrganisation(this.state.form).then(response => {
-        console.log(response.data);
+        console.log("errr", response);
         if (response.data.type === "error") {
           window.scrollTo(0, 0);
           return this.setState({
