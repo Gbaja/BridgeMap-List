@@ -8,11 +8,10 @@
   flex-wrap: wrap;
   width: 80%;
   flex-direction: column;
-  justify-content: space-around;
   box-sizing: border-box;
 }
 .organisations__list {
-  margin-top: 3rem;
+  margin: 2%;
 }
 .organisations__img-container {
   width: 100%;
@@ -61,6 +60,6 @@
     flex-direction: row;
   }
   .organisations__list {
-    width: 31%;
+    width: 29%;
   }
 }
