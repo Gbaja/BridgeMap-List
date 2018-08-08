@@ -1,11 +1,9 @@
 import React from "react";
 
-import Header from "../Shared/Header/Header";
 import "./StaticPages.css";
 
 const About = () => (
   <div className="about__container">
-    <Header />
     <p className="about__text">
       BridgeMap List is an online directory of organisations that works with
       young people. This can be the company's main purpose or a subset of its

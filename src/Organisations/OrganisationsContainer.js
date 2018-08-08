@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { fetchOrganisations, findOrganisations } from "../requests/airtable";
 import Organisations from "./Organisations";
-import Header from "../Shared/Header/Header";
 import SearchForm from "./SearchForm/SearchFormContainer";
 
 class OrganisationsContainer extends Component {
@@ -36,7 +35,6 @@ class OrganisationsContainer extends Component {
   render() {
     return (
       <div>
-        <Header />
         <SearchForm
           handleSearch={this.handleSearch}
           handleViewAll={this.handleViewAll}

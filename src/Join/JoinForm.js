@@ -2,14 +2,11 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import "./Join.css";
-import Header from "../Shared/Header/Header";
 
 const JoinForm = props => (
   <div>
-    <Header />
     <div className="join">
       <h2>Join BridgeMap List</h2>
-
       <p>
         Any organisation that does any kind of work either directly or through
         their outreach/CSR can fill in the form to join BridgeMap list. Before
