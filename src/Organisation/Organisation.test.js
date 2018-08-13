@@ -46,7 +46,6 @@ describe("Fetching data HOC component", () => {
       <WrapperComponent organisationName="Futureversity" />
     );
 
-    console.log(wrapper);
     expect(wrapper.toJSON()).toMatchSnapshot();
   });
 });
