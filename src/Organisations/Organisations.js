@@ -34,9 +34,7 @@ const Organisations = ({ data, isLoading }) => {
                 {organisation["Name of Organisation"]}
               </h3>
               <p className="organisations__services">
-                {organisation["Services Provided to young people"].map(
-                  service => <span key={service}>{service}</span>
-                )}
+                {organisation["Services Provided to young people"].join(", ")}
               </p>
               <p className="organisations__type">
                 {organisation["Type of Organisation"]}

@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 import fetchingDataHOC from "./FetchingDataHOC";
 import { fetchOrganisation } from "../requests/airtable";
-import Header from "../Shared/Header/Header";
 import Loading from "../Shared/Loading/Loading";
 import "./Organisation.css";
 
@@ -17,7 +16,6 @@ const Organisation = props => {
   }
   return (
     <div>
-      <Header />
       {organisation.map(info => (
         <div key={info["Name of Organisation"]} className="org-info__container">
           <div className="org-info__top">

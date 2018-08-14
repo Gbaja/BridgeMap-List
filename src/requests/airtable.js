@@ -7,7 +7,8 @@ export const fetchServices = () => {
       return response.data;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FETCH SERVICES ERROR: ", err.response);
+      return err.data;
     });
 };
 
@@ -18,7 +19,8 @@ export const fetchWheres = () => {
       return response.data;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FETCH WHERE'S ERROR: ", err.response);
+      return err.response;
     });
 };
 export const fetchHows = () => {
@@ -28,7 +30,8 @@ export const fetchHows = () => {
       return response.data;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FETCH HOW'S ERROR: ", err.response);
+      return err.response;
     });
 };
 
@@ -39,7 +42,8 @@ export const fetchOrganisations = () => {
       return response.data;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FETCH ORGANISATIONS ERROR: ", err.response);
+      return err.response;
     });
 };
 
@@ -50,7 +54,8 @@ export const fetchOrganisation = name => {
       return response.data;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FETCH ORGANISATION ERROR: ", err.response);
+      return err.response;
     });
 };
 
@@ -61,7 +66,12 @@ export const addOrganisation = data => {
       return response;
     })
     .catch(err => {
-      console.log(err);
+      if (err.response.status === 422) {
+        return err.response;
+      } else {
+        console.log("ADD ORGANISATION ERROR: ", err.response);
+        return err.response;
+      }
     });
 };
 
@@ -72,6 +82,7 @@ export const findOrganisations = data => {
       return response;
     })
     .catch(err => {
-      console.log(err);
+      console.log("FIND ORGANISATIONS ERROR: ", err.response);
+      return err.response;
     });
 };

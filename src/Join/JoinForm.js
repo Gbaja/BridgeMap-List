@@ -2,11 +2,9 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import "./Join.css";
-import Header from "../Shared/Header/Header";
 
 const JoinForm = props => (
   <div>
-    <Header />
     <div className="join">
       <h2>Join BridgeMap List</h2>
       <p>
@@ -15,8 +13,22 @@ const JoinForm = props => (
         filling out this form, we suggest you read through our{" "}
         <Link to="/faq">Frequently Asked Questions</Link>
       </p>
-      <form onSubmit={props.handleSumbit} className="join__form">
-        <p>{props.errors && props.errors.join("")}</p>
+      <form onSubmit={props.handleSubmit} className="join__form">
+        {Object.values(props.formErrors).length !== 0 ? (
+          <ul>
+            {Object.values(props.formErrors).map(error => {
+              return (
+                error && (
+                  <Fragment key={error}>
+                    <li className="error-color">{error && error}</li>
+                  </Fragment>
+                )
+              );
+            })}
+          </ul>
+        ) : (
+          false
+        )}
         <div className="join__form__fields-container">
           <label className="join__form__label">Organisation name</label>
           <input
@@ -89,6 +101,9 @@ const JoinForm = props => (
             className="join-form__input-file"
           />
         </div>
+        <p className="logo-error error-color">
+          {props.logoError && props.logoError}
+        </p>
         <div className="join__form__fields-container">
           <label className="join__form__label">About</label>
           <textarea

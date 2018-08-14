@@ -22,47 +22,75 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 router.post("/files", upload.single("file"), fileUploadMiddleware);
 
-router.get("/api/all_services", (req, res) => {
-  allServices().then(services => {
-    res.send(services);
-  });
+router.get("/api/all_services", (req, res, next) => {
+  allServices()
+    .then(services => {
+      res.send(services);
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-router.get("/api/all_where", (req, res) => {
-  allWhere().then(where => {
-    res.send(where);
-  });
+router.get("/api/all_where", (req, res, next) => {
+  allWhere()
+    .then(where => {
+      res.send(where);
+    })
+    .catch(err => {
+      next(err);
+    });
 });
-router.get("/api/all_how", (req, res) => {
-  allHow().then(how => {
-    res.send(how);
-  });
+router.get("/api/all_how", (req, res, next) => {
+  allHow()
+    .then(how => {
+      res.send(how);
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-router.get("/api/all_organisations", (req, res) => {
+router.get("/api/all_organisations", (req, res, next) => {
   console.log("ALL ORGANISATION");
-  allOrganisations().then(organisations => {
-    res.send(JSON.stringify(organisations));
-  });
+  allOrganisations()
+    .then(organisations => {
+      res.send(JSON.stringify(organisations));
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-router.get(`/api/one_organisation`, (req, res) => {
-  oneOrganisation(req.query.name).then(organisation => {
-    res.send(JSON.stringify(organisation));
-  });
+router.get(`/api/one_organisation`, (req, res, next) => {
+  oneOrganisation(req.query.name)
+    .then(organisation => {
+      res.send(JSON.stringify(organisation));
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-router.post(`/api/add_organisation`, (req, res) => {
-  addOrganisation(req.body).then(response => {
-    res.send(JSON.stringify(response));
-  });
+router.post(`/api/add_organisation`, (req, res, next) => {
+  addOrganisation(res, req.body)
+    .then(response => {
+      res.send(JSON.stringify(response));
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-router.post("/api/find_organisations", (req, res) => {
+router.post("/api/find_organisations", (req, res, next) => {
   console.log("FIND ORGANISATION");
-  findOrganisations(req.body).then(organisations => {
-    res.send(JSON.stringify(organisations));
-  });
+  findOrganisations(req.body)
+    .then(organisations => {
+      res.send(JSON.stringify(organisations));
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;

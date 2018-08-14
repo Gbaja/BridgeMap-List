@@ -1,12 +1,10 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import Header from "../Shared/Header/Header";
 import "./StaticPages.css";
 
 const JoinConfirmation = () => (
   <Fragment>
-    <Header />
     <div className="join-confirmation">
       <p className="join-confirmation__text">
         Thank you for filling out our join form

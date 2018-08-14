@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from "react";
-
-import Header from "../Shared/Header/Header";
+import React, { Component } from "react";
 
 const fetchingDataHOC = fetchFunc => Comp => {
   return class extends Component {
@@ -19,12 +17,7 @@ const fetchingDataHOC = fetchFunc => Comp => {
 
     render() {
       if (this.state.error) {
-        return (
-          <Fragment>
-            <Header />
-            <p>{this.state.error.message}</p>
-          </Fragment>
-        );
+        this.props.history.push("/server_error");
       }
 
       return (

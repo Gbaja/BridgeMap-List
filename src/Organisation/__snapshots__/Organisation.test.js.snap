@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fetching data HOC component withHoc should render without crashing 1`] = `
+<div>
+  <div>
+    Component
+  </div>
+</div>
+`;

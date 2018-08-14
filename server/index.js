@@ -9,6 +9,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(routes);
+app.use(function(err, req, res, next) {
+  console.log("ERROR IN NEXT: ", err);
+  res.status(err.status || 500).send({
+    message: err.message,
+    error: {}
+  });
+});
+
 if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "..", "/build/");
   app.use(express.static(buildPath));

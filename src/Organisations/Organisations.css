@@ -8,9 +8,10 @@
   flex-wrap: wrap;
   width: 80%;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .organisations__list {
-  margin: 2rem;
+  margin: 2%;
 }
 .organisations__img-container {
   width: 100%;
@@ -22,12 +23,8 @@
   height: inherit;
 }
 .organisations__link {
-  background-color: #7d2d45;
-  color: white;
-  text-decoration: none;
-  padding: 0.6rem 0.3rem;
+  color: #7d2d45;
   display: block;
-  width: 120px;
 }
 
 .scroll-top {
@@ -59,6 +56,6 @@
     flex-direction: row;
   }
   .organisations__list {
-    width: 25%;
+    width: 29%;
   }
 }

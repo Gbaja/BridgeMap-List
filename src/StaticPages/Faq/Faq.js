@@ -1,13 +1,11 @@
 import React from "react";
 
-import Header from "../../Shared/Header/Header";
 import "./Faq.css";
 
 const Faq = props => {
   console.log(props.faqs[0].joining);
   return (
     <div className="faqs">
-      <Header />
       <div className="faqs__container">
         <h3 className="faqs__heading">Frequently Asked Questions</h3>
         <p>
