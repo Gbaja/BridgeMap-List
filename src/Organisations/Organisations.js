@@ -9,14 +9,15 @@ const Organisations = ({ data, isLoading }) => {
   const organisations = data || [];
   return (
     <div className="organisations">
-      {isLoading ? (
-        <Loading />
-      ) : data.length === 0 ? (
+      {!isLoading &&
+        data.length === 0 && (
         <p>
-          We currently do not have any organisation that matches your search.
-          Please refine your search.
+            We currently do not have any organisation that matches your search.
+            Please refine your search.
         </p>
-      ) : (
+      )}
+      {!isLoading &&
+        data.length > 0 && (
         <ul className="organisations__container">
           {organisations.map(organisation => (
             <li
@@ -45,7 +46,7 @@ const Organisations = ({ data, isLoading }) => {
                   .replace(/\s/g, "-")
                   .toLowerCase()}/${organisation.id}`}
               >
-                View more info
+                  View more info
               </Link>
             </li>
           ))}

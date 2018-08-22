@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { fetchOrganisations, findOrganisations } from "../requests/airtable";
 import Organisations from "./Organisations";
 import SearchForm from "./SearchForm/SearchFormContainer";
+import Loading from "../Shared/Loading/Loading";
 
 class OrganisationsContainer extends Component {
   state = {
@@ -35,6 +36,7 @@ class OrganisationsContainer extends Component {
   render() {
     return (
       <div>
+        {this.state.isLoading && <Loading absolute />}
         <SearchForm
           handleSearch={this.handleSearch}
           handleViewAll={this.handleViewAll}
