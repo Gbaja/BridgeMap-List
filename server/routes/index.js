@@ -27,9 +27,7 @@ router.get("/api/all_services", (req, res, next) => {
     .then(services => {
       res.send(services);
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 router.get("/api/all_where", (req, res, next) => {
@@ -37,18 +35,14 @@ router.get("/api/all_where", (req, res, next) => {
     .then(where => {
       res.send(where);
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 router.get("/api/all_how", (req, res, next) => {
   allHow()
     .then(how => {
       res.send(how);
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 router.get("/api/all_organisations", (req, res, next) => {
@@ -57,9 +51,7 @@ router.get("/api/all_organisations", (req, res, next) => {
     .then(organisations => {
       res.send(JSON.stringify(organisations));
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 router.get(`/api/one_organisation`, (req, res, next) => {
@@ -67,9 +59,7 @@ router.get(`/api/one_organisation`, (req, res, next) => {
     .then(organisation => {
       res.send(JSON.stringify(organisation));
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 router.post(`/api/add_organisation`, (req, res, next) => {
@@ -77,9 +67,7 @@ router.post(`/api/add_organisation`, (req, res, next) => {
     .then(response => {
       res.send(JSON.stringify(response));
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 router.post("/api/find_organisations", (req, res, next) => {
@@ -88,9 +76,7 @@ router.post("/api/find_organisations", (req, res, next) => {
     .then(organisations => {
       res.send(JSON.stringify(organisations));
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(next);
 });
 
 module.exports = router;

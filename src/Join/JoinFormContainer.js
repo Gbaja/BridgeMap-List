@@ -150,38 +150,15 @@ class JoinFormContainer extends Component {
       });
   };
 
-  handleServiceChange = ({ target: { checked, value } }) => {
+  handleCheckBoxes = name => ({ target: { checked, value } }) => {
     const { form } = this.state;
-    const { services } = form;
+    const checkboxState = form[name];
+    console.log(value);
     if (checked) {
-      this.setState({ form: { ...form, services: [...services, value] } });
+      this.setState({ form: { ...form, [name]: [...checkboxState, value] } });
     } else {
       this.setState({
-        form: { ...form, services: services.filter(byNotEqualTo(value)) }
-      });
-    }
-  };
-
-  handleHowChange = ({ target: { checked, value } }) => {
-    const { form } = this.state;
-    const { how } = form;
-    if (checked) {
-      this.setState({ form: { ...form, how: [...how, value] } });
-    } else {
-      this.setState({
-        form: { ...form, how: how.filter(byNotEqualTo(value)) }
-      });
-    }
-  };
-
-  handleWhereChange = ({ target: { checked, value } }) => {
-    const { form } = this.state;
-    const { where } = form;
-    if (checked) {
-      this.setState({ form: { ...form, where: [...where, value] } });
-    } else {
-      this.setState({
-        form: { ...form, where: where.filter(byNotEqualTo(value)) }
+        form: { ...form, [name]: checkboxState.filter(byNotEqualTo(value)) }
       });
     }
   };
@@ -198,9 +175,9 @@ class JoinFormContainer extends Component {
         <JoinForm
           form={this.state.form}
           handleInputChange={this.handleInputChange}
-          handleServiceChange={this.handleServiceChange}
-          handleHowChange={this.handleHowChange}
-          handleWhereChange={this.handleWhereChange}
+          handleServiceChange={this.handleCheckBoxes("services")}
+          handleHowChange={this.handleCheckBoxes("how")}
+          handleWhereChange={this.handleCheckBoxes("where")}
           handleSubmit={this.handleSubmit}
           handleFileUpload={this.handleFileUpload}
           services={this.state.services}
