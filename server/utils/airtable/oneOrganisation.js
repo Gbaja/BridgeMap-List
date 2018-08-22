@@ -1,17 +1,23 @@
 const { airtable, OrganisationFields } = require("./airtable");
 
-const getOneOrganisation = async org_name => {
+const getOneOrganisation = async id => {
   try {
-    const record = await airtable
-      .base(airtable.ORGANISATION_BASE)
-      .select({
-        filterByFormula: `{Name of Organisation} = \"${org_name}\"`,
-        fields: OrganisationFields
-      })
-      .all();
+    // const record = await airtable
+    //   .base(airtable.ORGANISATION_BASE)
+    //   .select({
+    //     filterByFormula: `{Name of Organisation} = \"${id}\"`,
+    //     fields: OrganisationFields
+    //   })
+    //   .all();
+    const record = await airtable.base(airtable.ORGANISATION_BASE).find(id);
+    // .then(record => {
+    //   return record.fields;
+    // });
 
-    const data = record.map(record => record.fields);
-    const where = data[0]["Where we are based"].map(id => {
+    console.log("ONE ORGANISATION RECORD: ", record.fields);
+
+    // const data = record.map(record => record.fields);
+    const where = record.fields["Where we are based"].map(id => {
       return airtable
         .base(airtable.WHERE_BASE)
         .find(id)
@@ -19,7 +25,7 @@ const getOneOrganisation = async org_name => {
           return record.fields.Name;
         });
     });
-    const how = data[0]["How we work with young people"].map(id => {
+    const how = record.fields["How we work with young people"].map(id => {
       return airtable
         .base(airtable.HOW_BASE)
         .find(id)
@@ -27,21 +33,23 @@ const getOneOrganisation = async org_name => {
           return record.fields.Name;
         });
     });
-    const services = data[0]["Services Provided to young people"].map(id => {
-      return airtable
-        .base(airtable.SERVICES_BASE)
-        .find(id)
-        .then(record => {
-          return record.fields.Name;
-        });
-    });
+    const services = record.fields["Services Provided to young people"].map(
+      id => {
+        return airtable
+          .base(airtable.SERVICES_BASE)
+          .find(id)
+          .then(record => {
+            return record.fields.Name;
+          });
+      }
+    );
     const howArray = await Promise.all(how);
     const servicesArray = await Promise.all(services);
     const whereArray = await Promise.all(where);
-    data[0]["Services Provided to young people"] = servicesArray;
-    data[0]["How we work with young people"] = howArray;
-    data[0]["Where we are based"] = whereArray;
-    return data;
+    record.fields["Services Provided to young people"] = servicesArray;
+    record.fields["How we work with young people"] = howArray;
+    record.fields["Where we are based"] = whereArray;
+    return record.fields;
   } catch (error) {
     console.log(error);
   }

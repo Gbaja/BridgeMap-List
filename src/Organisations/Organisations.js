@@ -41,7 +41,9 @@ const Organisations = ({ data, isLoading }) => {
               </p>
               <Link
                 className="organisations__link"
-                to={`/organisation/${organisation["Name of Organisation"]}`}
+                to={`/organisation/${organisation["Name of Organisation"]
+                  .replace(/\s/g, "-")
+                  .toLowerCase()}/${organisation.id}`}
               >
                 View more info
               </Link>

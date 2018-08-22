@@ -29,7 +29,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/organisation/:name"
+              path="/organisation/:name/:id"
               component={PageOrganisation}
             />
             <Route path="/server_error" component={ServerError} />
