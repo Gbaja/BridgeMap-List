@@ -21,9 +21,18 @@ class OrganisationsContainer extends Component {
 
   handleSearch = details => {
     this.setState({ isLoading: true });
-    findOrganisations(details).then(response => {
-      this.setState({ data: response.data, isLoading: false });
+    const checkIfAllDetailsEmpty = Object.values(details).every(item => {
+      return item === "";
     });
+    if (checkIfAllDetailsEmpty) {
+      fetchOrganisations().then(data =>
+        this.setState({ data, isLoading: false })
+      );
+    } else {
+      findOrganisations(details).then(response => {
+        this.setState({ data: response.data, isLoading: false });
+      });
+    }
   };
 
   handleViewAll = () => {
