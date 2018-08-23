@@ -2,7 +2,7 @@ import React from "react";
 import Organisation from "./Organisation";
 
 const PageOrganisation = props => {
-  return <Organisation organisationName={props.match.params.name} />;
+  return <Organisation id={props.match.params.id} />;
 };
 
 export default PageOrganisation;

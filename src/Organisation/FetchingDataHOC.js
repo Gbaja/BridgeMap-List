@@ -3,14 +3,13 @@ import React, { Component } from "react";
 const fetchingDataHOC = fetchFunc => Comp => {
   return class extends Component {
     state = {
-      data: [],
-      isLoading: false,
+      data: {},
+      isLoading: true,
       error: null
     };
 
     componentDidMount() {
-      this.setState({ isLoading: true });
-      fetchFunc(this.props.organisationName || this.props.match.params.name)
+      fetchFunc(this.props.id || this.props.match.params.id)
         .then(data => this.setState({ data, isLoading: false }))
         .catch(error => this.setState({ error, isLoading: false }));
     }
