@@ -15,14 +15,12 @@ const getOrganisations = async () => {
     })
     .all();
   const organisationsData = records.map(record => {
-    console.log(record);
     return {
       id: record.id,
       ...record.fields
     };
   });
-  console.log("ORGANISATION DATA: ", organisationsData);
-
+  console.log(organisationsData);
   const mapOrgsServices = organisationsData.map(async organisationData => {
     const services = organisationData["Services Provided to young people"].map(
       id => {
